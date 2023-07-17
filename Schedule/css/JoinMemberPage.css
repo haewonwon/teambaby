@@ -1,0 +1,25 @@
+.form_title {
+    margin-top: 150px;
+    font-size: 46px;
+}
+
+p {
+    font-size: 26px;
+}
+
+.input_form_box {
+    height: 70px;
+}
+
+.input_form {
+    width: 260px;
+    height: 40px;
+}
+
+.btn_overlap {
+    width: 100px;
+    height: 40px;
+    border-radius: 0px;
+    margin-left: 10px;
+    background-color: #8B9DC3;
+}

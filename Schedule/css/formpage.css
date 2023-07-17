@@ -1,0 +1,39 @@
+body {
+    background-color: #DFE3EE;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form_title {
+    margin-top: 200px;
+    font-size: 50px;
+}
+
+p {
+    display: inline-block;
+    padding-right: 10px;
+    font-size: 30px;
+}
+
+input {
+    border: none;
+    border-radius: 30px;
+}
+
+.input_form {
+    width: 300px;
+    height: 50px;
+}
+
+.btn_form_box {
+    text-align: center;
+}
+
+.btn_form {
+    width: 180px;
+    height: 75px;
+    background-color: #8B9DC3;
+    margin: 10px;
+    margin-top: 20px;
+}

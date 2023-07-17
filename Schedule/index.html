@@ -10,40 +10,48 @@
 <body>
 
     <header>
-
-        <!-- nav 버튼 (햄버거) -->
-        <input class="burger-check" type="checkbox" id="burger-check" /><label class="burger-icon" for="burger-check"><span class="burger-sticks"></span></label>
-        <div class="menu">
-        <div style="width: 200px;"></div>
-        </div>
-
         <button>
             <img class="stageus_logo" src="icon/stageus_logo_white.png">
         </button>
-
     </header>
 
-    <form action="Login.jsp">
+    <nav role="navigation">
+        <div id="menuToggle">
+            <input type="checkbox" />
+            <span></span>
+            <span></span>
+            <span></span>
+            <ul id="menu">
+               <div>김해원</div>
+               <div>팀원</div>
+               <div>2002.02.21</div>
+               <div>jephpp@naver.com</div>
+               <div>01030641864</div>
+            </ul>
+        </div>
+    </nav>
+
+    <form>
 
         <p class="text_login">Log In</p>
 
         <div class="login_box">
             <img class="login_icon" src="icon/free-icon-login-310869.png">
-            <input class="input_login" id="id_value" type="text">
+            <input class="input_login" id="id_value" type="text" maxlength="30">
         </div>
 
         <div class="login_box">
             <img class="login_icon" src="icon/free-icon-password-7817000.png">
-            <input class="input_login" id="pw_value" type="password">
+            <input class="input_login" id="pw_value" type="password" maxlength="20">
         </div>
 
         <input type="submit" id="btn_login" value="Log In">
 
-        <a>PW 찾기 |</a>
-        <a>ID 찾기 |</a>
-        <a>회원가입</a>
+        <a href="jsp (page)/FindPwPage.jsp">PW 찾기 |</a>
+        <a href="jsp (page)/FindIdPage.jsp">ID 찾기 |</a>
+        <a href="jsp (page)/JoinMemberPage.jsp">회원가입</a>
 
-    </main>
+    </form>
 
 </body>
 </html>
