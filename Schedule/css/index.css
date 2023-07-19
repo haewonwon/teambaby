@@ -36,6 +36,11 @@ form {
     height: 50px;
 }
 
+#error_message_box {
+    color: red;
+    margin-right: 40px;
+}
+
 #btn_login {
     display: block;
     margin-left: auto;

@@ -5,6 +5,7 @@
 
 p {
     font-size: 26px;
+    margin: 0;
 }
 
 .input_form_box {
@@ -14,6 +15,32 @@ p {
 .input_form {
     width: 260px;
     height: 40px;
+}
+
+.error_message {
+    margin-left: 70px;
+    padding-top: 5px;
+    color: red;
+}
+
+#error_email {
+    margin-left: 90px;
+}
+
+#error_pw {
+    margin-left: 110px;
+}
+
+#error_pw_check {
+    margin-left: 160px;
+}
+
+#error_birthday {
+    margin-left: 110px;
+}
+
+#error_number {
+    margin-left: 160px;
 }
 
 .btn_overlap {
