@@ -17,12 +17,6 @@ p {
     height: 40px;
 }
 
-.error_message {
-    margin-left: 70px;
-    padding-top: 5px;
-    color: red;
-}
-
 #error_email {
     margin-left: 90px;
 }

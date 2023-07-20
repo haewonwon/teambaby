@@ -6,6 +6,7 @@
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="../css/base.css">
     <link rel="stylesheet" type="text/css" href="../css/formpage.css">
+    <link rel="stylesheet" type="text/css" href="../css/find.css">
 </head>
 <body>
 
@@ -37,12 +38,14 @@
 
         <div class="input_form_box">
             <p>새로운 비밀번호</p>
-            <input type="text" class="input_form" id="name_value">
+            <input type="password" class="input_form" id="pw_value">
+            <div class="error_message" id="error_pw_change_pw"></div>
         </div>
 
         <div class="input_form_box">
             <p>비밀번호 확인</p>
-            <input type="password" class="input_form" id="phonenumber_value">
+            <input type="password" class="input_form" id="pw_check_value">
+            <div class="error_message" id="error_pw_check_change_pw"></div>
         </div>
 
         <div class="btn_form_box">
@@ -52,4 +55,5 @@
 
     </form>
 
+    <script type="text/javascript" src="../js/ChangePw.js"></script>
 </body>

@@ -5,6 +5,8 @@ var inputPW = document.getElementById("pw_value");
 var inputCheckingPW = document.getElementById("pwCheck_value");
 var inputBirthday = document.getElementById("birthday_value");
 var inputNumber = document.getElementById("phonenumber_value");
+var btnCancel = document.getElementById("btn_cancel");
+var btnJoin = document.getElementById("btn_join");
 
 // 전역변수 - 경고 문구 div
 var errorName = document.getElementById("error_name");
@@ -13,6 +15,14 @@ var errorPW = document.getElementById("error_pw");
 var errorPwCheck = document.getElementById("error_pw_check");
 var errorBday = document.getElementById("error_birthday");
 var errorNumber = document.getElementById("error_number");
+
+// 버튼 클릭 시, 페이지 이동
+// 확인 (가입) 클릭 후, 결격사항 존재할 시 경고 모달창 출력 후, 경고 모달창의 확인 클릭 시 모달창 사라짐
+// 결격사항 없이 모든 입력창 통과 시, 회원가입 진행 (form action)
+// 취소 클릭 시, 로그인 창으로 이동
+btnCancel.addEventListener("click", function() {
+    window.location.href = "../index.html";
+});
 
 // 이름 입력 시 예외처리
 // 한글, 영어만

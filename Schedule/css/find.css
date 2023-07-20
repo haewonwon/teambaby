@@ -1,0 +1,25 @@
+.error_message {
+    margin-left: 70px;
+    padding-top: 5px;
+    color: red;
+}
+
+#error_number_find_id {
+    margin-left: 185px;
+}
+
+#error_number_find_pw {
+    margin-left: 185px;
+}
+
+#error_email_find_pw {
+    margin-left: 100px;
+}
+
+#error_pw_change_pw {
+    margin-left: 210px;
+}
+
+#error_pw_check_change_pw {
+    margin-left: 185px;
+}

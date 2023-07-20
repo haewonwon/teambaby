@@ -6,6 +6,7 @@
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="../css/base.css">
     <link rel="stylesheet" type="text/css" href="../css/formpage.css">
+    <link rel="stylesheet" type="text/css" href="../css/find.css">
     <link rel="stylesheet" type="text/css" href="../css/JoinMemberPage.css">
 </head>
 <body>
@@ -85,7 +86,7 @@
 
         <div class="btn_form_box">
             <input type="button" class="btn_form" id="btn_cancel" value="취소">
-            <input type="submit" class="btn_form" id="btn_find_pw" value="확인">
+            <input type="submit" class="btn_form" id="btn_join" value="확인">
         </div>
 
     </form>
