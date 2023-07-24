@@ -35,7 +35,7 @@
 
     <div class="form_title">회원가입</div>
 
-    <form>
+    <form action="JoinMemberPage.jsp">
 
         <div class="input_form_box">
             <p>이름</p>

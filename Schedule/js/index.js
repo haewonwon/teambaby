@@ -52,7 +52,7 @@ function removeMessage(message) {
 // 함수 - 이메일 유효성
 function checkingEmail(email) {
 
-    var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // 이메일 정규표현식 고치기 // 정규표현식 뜯어서 분석해보기
     return emailPattern.test(email);
 
 };

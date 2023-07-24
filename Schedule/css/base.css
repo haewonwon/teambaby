@@ -1,18 +1,103 @@
+:root {
+    /* color */
+    --white-color-one: #FFFFFF;
+    --white-color-two: #F7F7F7;
+    --blue-color-one: #DFE3EE;
+    --blue-color-two: #8B9DC3;
+    --blue-color-main: #3B5998;
+    --red-color: #E21120;
+    --black-color: #000000;
+
+    /* width-size */
+    --header-width: 100%;
+    --logo-width: 280px;
+    --input-form-width: 300px;
+    --btn-form-width: 180px;
+    --form-width: 600px;
+    --login-icon-width: 40px;
+    --input-login-width: 300px;
+    --btn-login-width: 280px;
+    --input-form-width: 260px;
+    --btn-overlap-width: 100px;
+
+    /* height-size */
+    --header-height: 130px;
+    --logo-height: 100px;
+    --input-form-height: 50px;
+    --btn-form-height: 75px;
+    --form-height: 400px;
+    --login-icon-height: 40px;
+    --input-login-height: 50px;
+    --btn-login-height: 40px;
+    --input-form-box-height: 70px;
+    --input-form-height: 40px;
+    --btn-overlap-height: 40px;
+
+    /* border */
+    --base-border-radius: 30px;
+    --btn-overlap-border-radius: 0px;
+
+    /* padding-size */
+    --logo-padding-top: 5px;
+    --error-message-padding-top: 5px;
+    --p-padding-right: 10px;
+    --text-login-padding: 20px;
+    --login-box-padding: 10px;
+    --login-padding-right: 10px;
+    --a-padding-top: 5px;
+
+    /* margin-size */
+    --error-message-margin-left: 70px;
+    --error-number-find-id-margin-left: 185px;
+    --error-number-find-pw-margin-left: 185px;
+    --error-email-find-pw-margin-left: 100px;
+    --error-pw-change-pw-margin-left: 210px;
+    --error-pw-check-change-pw-margin-left: 185px;
+
+    --form-title-margin-top: 200px;
+    --btn-form-margin: 10px;
+    --btn-form-margin-top: 20px;
+
+    --form-margin-top: 250px;
+    --text-login-margin: 0;
+    --error-message-box-margin-left: 40px;
+    --btn-login-margin-top: 10px;
+    --btn-login-margin-bottom: 10px;
+
+    --form-title-margin-top: 150px;
+    --p-margin: 0;
+    --error-email-margin-left: 90px;
+    --error-pw-margin-left: 110px;
+    --error-pw-check-margin-left: 160px;
+    --error-birthday-margin-left: 110px;
+    --error-number-margin-left: 160px;
+    --btn-overlap-margin-left: 10px;
+
+    /* font-size */
+    --form-title-font-size: 50px;
+    --p-font-size: 30px;
+    --text-login-font-size: 65px;
+    --a-font-size: 20px;
+    --form-title-font-size: 46px;
+    --p-font-size: 26px;
+
+}
+
 header {
     position: absolute;
     top: 0;
     left: 0;
     display: flex;
     justify-content: center;
-    width: 100%;
-    height: 130px;
-    background-color: #3B5998;
+    width: var(--header-width);
+    height: var(--header-height);
+    background-color: var(--blue-color-main);
 }
 
 .stageus_logo {
-    width: 280px;
-    height: 100px;
-    padding-top: 5px;
+    width: var(--logo-width);
+    height: var(--logo-height);
+    padding-top: var(--logo-padding-top);
 }
 
 button {

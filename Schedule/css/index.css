@@ -1,62 +1,62 @@
 body {
-    background-color: #8B9DC3;
+    background-color: var(--blue-color-two);
 }
 
 form {
-    width: 600px;
-    height: 400px;
-    margin-top: 250px;
-    background-color: #DFE3EE;
+    width: var(--form-width);
+    height: var(--form-height);
+    margin-top: var(--form-margin-top);
+    background-color: var(--blue-color-one);
     margin-left: auto;
     margin-right: auto;
     text-align: center;
-    border-radius: 30px;
+    border-radius: var(--base-border-radius);
 }
 
 .text_login {
-    font-size: 65px;
-    padding: 20px;
-    margin: 0;
+    font-size: var(--text-login-font-size);
+    padding: var(--text-login-padding);
+    margin: var(--text-login-margin);
 }
 
 .login_box {
     display: flex;
     justify-content: center;
-    padding: 10px
+    padding: var(--login-box-padding);
 }
 
 .login_icon {
-    width: 40px;
-    height: 40px;
-    padding-right: 10px;
+    width: var(--login-icon-width);
+    height: var(--login-icon-height);
+    padding-right: var(--login-padding-right);
 }
 
 .input_login {
-    width: 300px;
-    height: 50px;
+    width: var(--input-login-width);
+    height: var(--input-login-height);
 }
 
 #error_message_box {
-    color: red;
-    margin-right: 40px;
+    color: var(--red-color);
+    margin-right: var(--error-message-box-margin-left);
 }
 
 #btn_login {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 280px;
-    height: 40px;
-    background-color: #3B5998;
+    width: var(--btn-login-width);
+    height: var(--btn-login-height);
+    background-color: var(--blue-color-main);
     border-style: none;
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: var(--btn-login-margin-top);
+    margin-bottom: var(--btn-login-margin-bottom);
 }
 
 a {
-    padding-top: 5px;
-    font-size: 20px;
+    padding-top: var(--a-padding-top);
+    font-size: var(--a-font-size);
     display: inline-block;
     text-decoration-line: none;
-    color: #000;
+    color: var(--black-color);
 }

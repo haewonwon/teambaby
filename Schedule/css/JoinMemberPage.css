@@ -1,46 +1,46 @@
 .form_title {
-    margin-top: 150px;
-    font-size: 46px;
+    margin-top: var(--form-title-margin-top);
+    font-size: var(--form-title-font-size);
 }
 
 p {
-    font-size: 26px;
-    margin: 0;
+    font-size: var(--p-font-size);
+    margin: var(--p-margin);
 }
 
 .input_form_box {
-    height: 70px;
+    height: var(--input-form-box-height);
 }
 
 .input_form {
-    width: 260px;
-    height: 40px;
+    width: var(--input-form-width);
+    height: var(--input-form-height);
 }
 
 #error_email {
-    margin-left: 90px;
+    margin-left: var(--error-email-margin-left);
 }
 
 #error_pw {
-    margin-left: 110px;
+    margin-left: var(--error-pw-margin-left);
 }
 
 #error_pw_check {
-    margin-left: 160px;
+    margin-left: var(--error-pw-check-margin-left);
 }
 
 #error_birthday {
-    margin-left: 110px;
+    margin-left: var(--error-birthday-margin-left);
 }
 
 #error_number {
-    margin-left: 160px;
+    margin-left: var(--error-number-margin-left);
 }
 
 .btn_overlap {
-    width: 100px;
-    height: 40px;
-    border-radius: 0px;
-    margin-left: 10px;
-    background-color: #8B9DC3;
+    width: var(--btn-overlap-width);
+    height: var(--btn-overlap-height);
+    border-radius: var(--btn-overlap-border-radius);
+    margin-left: var(--btn-overlap-margin-left);
+    background-color: var(--blue-color-two);
 }
