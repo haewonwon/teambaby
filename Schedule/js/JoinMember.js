@@ -1,20 +1,5 @@
-// 전역변수 - input 관련
-var inputName = document.getElementById("name_value");
-var inputEmail = document.getElementById("email_value");
-var inputPW = document.getElementById("pw_value");
-var inputCheckingPW = document.getElementById("pwCheck_value");
-var inputBirthday = document.getElementById("birthday_value");
-var inputNumber = document.getElementById("phonenumber_value");
 var btnCancel = document.getElementById("btn_cancel");
 var btnJoin = document.getElementById("btn_join");
-
-// 전역변수 - 경고 문구 div
-var errorName = document.getElementById("error_name");
-var errorEmail = document.getElementById("error_email");
-var errorPW = document.getElementById("error_pw");
-var errorPwCheck = document.getElementById("error_pw_check");
-var errorBday = document.getElementById("error_birthday");
-var errorNumber = document.getElementById("error_number");
 
 // 버튼 클릭 시, 페이지 이동
 // 확인 (가입) 클릭 후, 결격사항 존재할 시 경고 모달창 출력 후, 경고 모달창의 확인 클릭 시 모달창 사라짐
@@ -25,6 +10,8 @@ btnCancel.addEventListener("click", function() {
 });
 
 // 이름 입력 시 예외처리
+var inputName = document.getElementById("name_value");
+var errorName = document.getElementById("error_name");
 // 한글, 영어만
 function checkKoreanEnglish(str) {
     var pattern = /^[가-힣a-zA-Z]+$/;
@@ -74,6 +61,8 @@ inputName.addEventListener("blur", function() {
 });
 
 // 이메일 입력 시 예외처리
+var inputEmail = document.getElementById("email_value");
+var errorEmail = document.getElementById("error_email");
 // 이메일 유효성
 function checkValidEmail(email) {
     var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -123,6 +112,8 @@ inputEmail.addEventListener("blur", function() {
 });
 
 // 비밀번호 입력 시 예외처리
+var inputPW = document.getElementById("pw_value");
+var errorPW = document.getElementById("error_pw");
 // 비밀번호 유효성
 function checkValidPW(password) {
     // 영문 (대소문자), 숫자, 특수문자가 포함되어 있는지 확인하는 정규식
@@ -172,6 +163,8 @@ inputPW.addEventListener("blur", function() {
 });
 
 // 비밀번호 확인 예외처리
+var inputCheckingPW = document.getElementById("pwCheck_value");
+var errorPwCheck = document.getElementById("error_pw_check");
 // 경고 문구 출력 (비밀번호 확인)
 function displayErrorMessagePwCheck(message) {
     errorPwCheck.innerText = message;
@@ -211,6 +204,8 @@ inputCheckingPW.addEventListener("blur", function() {
 // 직급 예외처리 (팀원, 팀장이 아닐 때의 예외처리 하지만 팀원 디폴트에 팀원, 팀장 외에는 다른 select option이 없음 필요하다면 추후에 추가하기)
 
 // 생년월일 예외처리
+var inputBirthday = document.getElementById("birthday_value");
+var errorBday = document.getElementById("error_birthday");
 // 오늘 날짜 이후로 선택 불가
 var today = new Date().toISOString().split("T")[0];
 inputBirthday.setAttribute("max", today);
@@ -247,6 +242,8 @@ inputBirthday.addEventListener("blur", function() {
 });
 
 // 전화번호 예외처리
+var inputNumber = document.getElementById("phonenumber_value");
+var errorNumber = document.getElementById("error_number");
 // 전화번호 유효성
 function checkValidNumber(number) {
     // 하이픈을 제외한 전화번호

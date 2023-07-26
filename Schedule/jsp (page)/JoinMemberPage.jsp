@@ -46,7 +46,7 @@
         <div class="input_form_box">
             <p>이메일</p>
             <input type="text" class="input_form" id="email_value" maxlength="320">
-            <input type="button" class="btn_overlap" id="btn_overlap_email" value="중복">
+            <input type="button" class="btn_overlap" id="btn_overlap_email" value="중복" on>
             <div class="error_message" id="error_email"></div>
         </div>
 
