@@ -21,7 +21,6 @@ window.addEventListener("click", function (event) {
 
 var btnSave = document.getElementById("btn_save");
 btnSave.addEventListener("click", function() {
-    // for문 안에서
     var scheduleBox = document.createElement("div");
     main.appendChild(scheduleBox);
 });

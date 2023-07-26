@@ -6,6 +6,7 @@
 <%@ page import="java.sql.Connection" %>
 <!-- 데이터베이스로 sql 전송해주는 라이브러리 -->
 <%@ page import="java.sql.PreparedStatement" %>
+<%@ page import="java.io.*, java.sql.*, java.util.*, org.json.simple.JSONObject, org.json.simple.parser.JSONParser" %>
 
 <%
 
@@ -40,6 +41,9 @@ String pwCheckValue = request.getParameter("pwCheck_value");
 String selectRank = request.getParameter("select_rank");
 String birthdayValue = request.getParameter("birthday_value");
 String numberValue = request.getParameter("phonenumber_value");
+
+// JSON 객체 생성
+JSONObject resultJson = new JSONObject();
 
 // Connector 파일 불러와서 MariaDB 연결
 Class.forName("com.mysql.jdbc.Driver");
@@ -94,7 +98,41 @@ try {
         throw new Exception("올바른 휴대전화 번호를 입력해 주세요.");
     }
 
-    // 여기까지 모든 검증을 통과한 경우, 회원가입 로직 수행 (데이터베이스에 새 회원 정보 저장)
+    // 이메일 중복 체크
+    String emailSql = "SELECT COUNT(*) as email_count FROM user WHERE email=?";
+    PreparedStatement emailQuery = connect.prepareStatement(emailSql);
+    emailQuery.setString(1, email);
+    ResultSet emailResult = emailQuery.executeQuery();
+
+    if (emailResult.next()) {
+        int emailCount = emailResult.getInt("email_count");
+        if (emailCount > 0) {
+            // 중복되는 이메일이 있음
+            resultJson.put("emailDuplicate", true);
+        } else {
+            // 중복되는 이메일이 없음
+            resultJson.put("emailDuplicate", false);
+        }
+    }
+
+    // 전화번호 중복 체크
+    String numberSql = "SELECT COUNT(*) as number_count FROM user WHERE phone=?";
+    PreparedStatement numberQuery = connect.prepareStatement(numberSql);
+    numberQuery.setString(1, number);
+    ResultSet numberResult = numberQuery.executeQuery();
+
+    if (numberResult.next()) {
+        int numberCount = numberResult.getInt("number_count");
+        if (numberCount > 0) {
+            // 중복되는 전화번호가 있음
+            resultJson.put("numberDuplicate", true);
+        } else {
+            // 중복되는 전화번호가 없음
+            resultJson.put("numberDuplicate", false);
+        }
+    }
+
+    // 데이터베이스에 새 회원 정보 저장
     query.setString(1, nameValue);
     query.setString(2, emailValue);
     query.setString(3, pwValue);
@@ -102,10 +140,6 @@ try {
     query.setString(5, birthdayValue);
     query.setString(6, numberValue);
     query.setDate(7, new java.sql.Date(System.currentTimeMillis()));
-
-    // if (checkEmailDuplication(email) || checkPhoneNumberDuplication(phoneNumber)) {
-        // throw new Exception("이미 사용 중인 이메일 또는 휴대전화 번호입니다.");
-    // }
 
     // 회원가입 성공 시
     query.executeUpdate();
