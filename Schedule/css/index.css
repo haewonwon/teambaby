@@ -43,14 +43,14 @@ form {
 
 #btn_login {
     display: block;
-    margin-left: auto;
-    margin-right: auto;
+    margin-left: var(--btn-login-margin-left);
     width: var(--btn-login-width);
     height: var(--btn-login-height);
     background-color: var(--blue-color-main);
     border-style: none;
     margin-top: var(--btn-login-margin-top);
     margin-bottom: var(--btn-login-margin-bottom);
+    border-radius: 0px;
 }
 
 a {
@@ -59,4 +59,9 @@ a {
     display: inline-block;
     text-decoration-line: none;
     color: var(--black-color);
+}
+
+input { 
+    border: none;
+    border-radius: 30px;
 }

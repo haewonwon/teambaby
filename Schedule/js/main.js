@@ -21,6 +21,10 @@ window.addEventListener("click", function (event) {
 
 var btnSave = document.getElementById("btn_save");
 btnSave.addEventListener("click", function() {
-    var scheduleBox = document.createElement("div");
-    main.appendChild(scheduleBox);
+
+    for (var i = 0; i < 31; i++) {
+        var scheduleBox = document.createElement("div");
+        main.appendChild(scheduleBox);
+    }
+    
 });

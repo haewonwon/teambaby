@@ -33,11 +33,11 @@ String sql = "SELECT * FROM user WHERE email=? AND pw=?";
 if (rs.next()) {
     session.setAttribute("id_value", idValue);
     // 클라이언트를 다른 URL로 리다이렉트
-    response.sendRedirect("jsp (page)/main.jsp"); // 프로필 페이지로 이동
+    response.sendRedirect("../jsp (page)/main.jsp");
     
 } else {
        
-    response.sendRedirect("Login.jsp");
+    response.sendRedirect("LoginAction.jsp");
 
 }
 

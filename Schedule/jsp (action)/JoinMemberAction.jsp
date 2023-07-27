@@ -6,33 +6,15 @@
 <%@ page import="java.sql.Connection" %>
 <!-- 데이터베이스로 sql 전송해주는 라이브러리 -->
 <%@ page import="java.sql.PreparedStatement" %>
-<%@ page import="java.io.*, java.sql.*, java.util.*, org.json.simple.JSONObject, org.json.simple.parser.JSONParser" %>
+<!-- ResultSet -->
+<%@ page import="java.sql.ResultSet" %>
+<%@ page import="java.io.PrintWriter" %>
+<%@ page import="java.io.IOException" %>
 
 <%
 
 // 앞 페이지에서 오는 데이터에 대해서 한글 인코딩
 request.setCharacterEncoding("UTF-8");
-
-// 로깅 설정
-Logger logger = Logger.getLogger("SignupLogger");
-FileHandler fileHandler = null;
-
-try {
-
-    // 로그 파일 생성
-    File logFile = new File("signup_log.txt");
-    if (!logFile.exists()) {
-        logFile.createNewFile();
-    }
-
-    fileHandler = new FileHandler("signup_log.txt", true);
-    logger.addHandler(fileHandler);
-    SimpleFormatter formatter = new SimpleFormatter();
-    fileHandler.setFormatter(formatter);
-
-} catch (IOException e) {
-    e.printStackTrace();
-}
 
 String nameValue = request.getParameter("name_value");
 String emailValue = request.getParameter("email_value");
@@ -42,20 +24,17 @@ String selectRank = request.getParameter("select_rank");
 String birthdayValue = request.getParameter("birthday_value");
 String numberValue = request.getParameter("phonenumber_value");
 
-// JSON 객체 생성
-JSONObject resultJson = new JSONObject();
-
 // Connector 파일 불러와서 MariaDB 연결
 Class.forName("com.mysql.jdbc.Driver");
 
 // db 연결
 Connection connect = DriverManager.getConnection("jdbc:mysql://localhost/imitation", "haewon", "kjneeke0609@");
 
-try {
+// sql 만들기
+String sql = "INSERT INTO user(name, email, pw, rank, birthday, phone, join_date) VALUES(?, ?, ?, ? , ?, ?, ?);";
+PreparedStatement query = connect.prepareStatement(sql);
 
-    // sql 만들기
-    String sql = "INSERT INTO user(name, email, pw, rank, birthday, phone, join_date) VALUES(?, ?, ?, ? , ?, ?, ?);";
-    PreparedStatement query = connect.prepareStatement(sql);
+try {
 
     // 이름 검증
     if (nameValue == null || nameValue.trim().isEmpty() || nameValue.length() < 2 || nameValue.length() > 7 || nameValue.contains(" ") || !nameValue.matches("^[가-힣a-zA-Z]*$")) {
@@ -73,7 +52,7 @@ try {
     }
 
     // 비밀번호 확인 검증
-    if (!pwCheckValue.equals(confirmPassword)) {
+    if (!pwCheckValue.equals(pwCheckValue)) {
         throw new Exception("비밀번호가 일치하지 않습니다.");
     }
 
@@ -101,36 +80,32 @@ try {
     // 이메일 중복 체크
     String emailSql = "SELECT COUNT(*) as email_count FROM user WHERE email=?";
     PreparedStatement emailQuery = connect.prepareStatement(emailSql);
-    emailQuery.setString(1, email);
+    emailQuery.setString(1, emailValue);
     ResultSet emailResult = emailQuery.executeQuery();
 
+    boolean isEmailDuplicate = false;
     if (emailResult.next()) {
         int emailCount = emailResult.getInt("email_count");
-        if (emailCount > 0) {
-            // 중복되는 이메일이 있음
-            resultJson.put("emailDuplicate", true);
-        } else {
-            // 중복되는 이메일이 없음
-            resultJson.put("emailDuplicate", false);
-        }
+        isEmailDuplicate = (emailCount > 0);
     }
 
     // 전화번호 중복 체크
     String numberSql = "SELECT COUNT(*) as number_count FROM user WHERE phone=?";
     PreparedStatement numberQuery = connect.prepareStatement(numberSql);
-    numberQuery.setString(1, number);
+    numberQuery.setString(1, numberValue);
     ResultSet numberResult = numberQuery.executeQuery();
 
+    boolean isNumberDuplicate = false;
     if (numberResult.next()) {
         int numberCount = numberResult.getInt("number_count");
-        if (numberCount > 0) {
-            // 중복되는 전화번호가 있음
-            resultJson.put("numberDuplicate", true);
-        } else {
-            // 중복되는 전화번호가 없음
-            resultJson.put("numberDuplicate", false);
-        }
+        isNumberDuplicate = (numberCount > 0);
     }
+
+    response.setContentType("text/html;charset=UTF-8");
+    PrintWriter printer = response.getWriter();
+    printer.println("emailDuplicate: " + isEmailDuplicate);
+    printer.println("numberDuplicate: " + isNumberDuplicate);
+    printer.close();
 
     // 데이터베이스에 새 회원 정보 저장
     query.setString(1, nameValue);
@@ -143,15 +118,10 @@ try {
 
     // 회원가입 성공 시
     query.executeUpdate();
-    logger.log(Level.INFO, "회원가입이 완료되었습니다.");
 
     } catch (Exception e) {
-
-        // 예외 처리: 로그 남기기
-        logger.log(Level.SEVERE, e.getMessage());
-
+        
     } finally {
-
         // 리소스 정리
         if (query != null) {
             query.close();
@@ -159,7 +129,27 @@ try {
         if (connect != null) {
             connect.close();
         }
-
-}
+    }
 
 %>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <main>
+        <h1>회원가입</h1>
+        <h2>이름 : <%=nameValue%> </h2>
+        <h2>아이디 : <%=emailValue%> </h2>
+        <h2>비밀번호 : <%=pwValue%> </h2>
+        <h2>직급 : <%=selectRank%> </h2>
+        <h2>생년월일 : <%=birthdayValue%> </h2>
+        <h2>휴대전화 번호 : <%=numberValue%> </h2>
+
+        <a href="index.html">LOG IN</a>
+    </main>
+
+</body>

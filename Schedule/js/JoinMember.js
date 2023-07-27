@@ -69,34 +69,21 @@ function checkValidEmail(email) {
     return emailPattern.test(email);
 };
 // 중복 확인
-function checkEmailDuplication() {
-
-    var email = document.getElementById("email_value").value;
-
-    fetch("../jsp (action)/JoinMemberAction.jsp", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-        },
-        body: "email=" + encodeURIComponent(email)
-    })
-    .then(response => response.json())
-    .then(data => {
-        var emailResultElement = document.getElementById("error_email");
-        if (data.duplicate) {
-            emailResultElement.textContent = "이미 사용 중인 이메일입니다.";
-        } else {
-            emailResultElement.textContent = "사용 가능한 이메일입니다.";
-            document.getElementById("email_value").disabled = true;
-        }
-    })
-    .catch(error => {
-        console.error("Error:", error);
-        var emailResultElement = document.getElementById("error_email");
-        emailResultElement.textContent = "오류가 발생했습니다.";
-    });
-
-}
+// function checkEmailDuplication() {
+//     var form = document.getElementById("join_mamber_form");
+//     var formData = new FormData(form);
+  
+//     fetch("../jsp (action)/JoinMemberAction.jsp", {
+//       method: "POST",
+//       body: formData
+//     })
+//     .then(response => response.text())
+//     .then(data => )
+//     .catch(error => {
+//       console.error("Error:", error);
+//       document.getElementById("error_email").innerText = "오류가 발생했습니다.";
+//     });
+//   }
 // 경고 문구 출력 (이메일)
 function displayErrorMessageEmail(message) {
     errorEmail.innerText = message;
@@ -280,34 +267,34 @@ function checkValidNumber(number) {
     return pattern.test(number);
 };
 // 중복 확인
-function checkNumberDuplication() {
+// function checkNumberDuplication() {
 
-    var phoneNumber = document.getElementById("phonenumber_value").value;
+//     var phoneNumber = document.getElementById("phonenumber_value").value;
 
-    fetch("../jsp (action)/JoinMemberAction.jsp", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/x-www-form-urlencoded"
-        },
-        body: "phoneNumber=" + encodeURIComponent(phoneNumber)
-    })
-    .then(response => response.json())
-    .then(data => {
-        var phoneNumberResultElement = document.getElementById("error_number");
-        if (data.duplicate) {
-            phoneNumberResultElement.textContent = "이미 사용 중인 전화번호입니다.";
-        } else {
-            phoneNumberResultElement.textContent = "사용 가능한 전화번호입니다.";
-            document.getElementById("phonenumber_value").disabled = true;
-        }
-    })
-    .catch(error => {
-        console.error("Error:", error);
-        var phoneNumberResultElement = document.getElementById("error_number");
-        phoneNumberResultElement.textContent = "오류가 발생했습니다.";
-    });
+//     fetch("../jsp (action)/JoinMemberAction.jsp", {
+//         method: "POST",
+//         headers: {
+//             "Content-Type": "application/x-www-form-urlencoded"
+//         },
+//         body: "phoneNumber=" + encodeURIComponent(phoneNumber)
+//     })
+//     .then(response => response.json())
+//     .then(data => {
+//         var phoneNumberResultElement = document.getElementById("error_number");
+//         if (data.duplicate) {
+//             phoneNumberResultElement.textContent = "이미 사용 중인 전화번호입니다.";
+//         } else {
+//             phoneNumberResultElement.textContent = "사용 가능한 전화번호입니다.";
+//             document.getElementById("phonenumber_value").disabled = true;
+//         }
+//     })
+//     .catch(error => {
+//         console.error("Error:", error);
+//         var phoneNumberResultElement = document.getElementById("error_number");
+//         phoneNumberResultElement.textContent = "오류가 발생했습니다.";
+//     });
 
-}
+// }
 // 경고 문구 출력 (전화번호)
 function displayErrorMessageNumber(message) {
     errorNumber.innerText = message;

@@ -35,7 +35,7 @@
 
     <div class="form_title">회원가입</div>
 
-    <form action="JoinMemberPage.jsp">
+    <form id="join_mamber_form" action="../jsp (action)/JoinMemberAction.jsp">
 
         <div class="input_form_box">
             <p>이름</p>
@@ -46,7 +46,7 @@
         <div class="input_form_box">
             <p>이메일</p>
             <input type="text" class="input_form" id="email_value" maxlength="320">
-            <input type="button" class="btn_overlap" id="btn_overlap_email" value="중복" onclick="checkEmailDuplication()">
+            <input type="button" class="btn_overlap" id="btn_overlap_email" value="중복">
             <div class="error_message" id="error_email"></div>
         </div>
 
@@ -80,7 +80,7 @@
         <div class="input_form_box">
             <p>휴대전화 번호</p>
             <input type="text" class="input_form" id="phonenumber_value">
-            <input type="button" class="btn_overlap" id="btn_overlap_phonenumber" value="중복" maxlength="11" onclick="checkNumberDuplication()">
+            <input type="button" class="btn_overlap" id="btn_overlap_phonenumber" value="중복" maxlength="11">
             <div class="error_message" id="error_number"></div>
         </div>
 

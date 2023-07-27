@@ -11,8 +11,8 @@
 
 <%
 
-String nameValue = request.getParameter("findid_name");
-String phonenumberValue = request.getParameter("findid_phonenumber");
+String nameValue = request.getParameter("name_value");
+String phonenumberValue = request.getParameter("phonenumber_value");
 
 // Connector 파일 불러와서 MariaDB 연결
 Class.forName("com.mysql.jdbc.Driver");
@@ -24,17 +24,12 @@ String query = "";
 PreparedStatement statement;
 
 if (phonenumberValue != null && !phonenumberValue.isEmpty()) {
-    query = "SELECT id FROM users WHERE full_name=? AND phone_number=?";
+    query = "SELECT id FROM user WHERE name=? AND number=?";
     statement = connection.prepareStatement(query);
     statement.setString(1, nameValue);
     statement.setString(2, phonenumberValue);
-} else if (emailValue != null && !emailValue.isEmpty()) {
-    query = "SELECT id FROM users WHERE full_name=? AND email=?";
-    statement = connection.prepareStatement(query);
-    statement.setString(1, nameValue);
-    statement.setString(2, emailValue);
 } else {
-    throw new IllegalArgumentException("전화번호 또는 이메일 중 하나를 입력해야 합니다.");
+    throw new IllegalArgumentException("전화번호를 입력해야 합니다.");
 }
 
 ResultSet resultSet = statement.executeQuery();
