@@ -15,6 +15,7 @@ btnCancel.addEventListener("click", function() {
 });
 
 // 예외처리
+// 모듈 처리 (다른 파일에도 쓰는 함수)
 // 한글, 영어만
 function checkKoreanEnglish(str) {
     var pattern = /^[가-힣a-zA-Z]+$/;
@@ -73,7 +74,7 @@ btnFindId.addEventListener("click", function() {
     
     if (name === "") {
         displayErrorMessageName("이름을 입력해 주세요.");
-        NameBorderChangingRed();
+        NameBorderChangingRed(); // 재활용하는 함수가 아니고, 짧은 함수라면 그냥 안에 같이 사용
     } else if (!checkKoreanEnglish(name)) {
         displayErrorMessageName("이름은 한글과 영어만 입력 가능합니다.");
         NameBorderChangingRed();
@@ -109,3 +110,20 @@ inputNumber.addEventListener("input", function() {
     phoneNumber = phoneNumber.replace(/\D/g, ""); // 숫자 이외의 문자 제거
     inputNumber.value = phoneNumber;
 });
+
+function submitChecking() {
+
+    console.log("들어옴")
+
+    var name = inputName.value.trim();
+    var number = inputNumber.value;
+    
+    if (name === "" || !checkKoreanEnglish(name) || name.length < 2 || name.length > 7) {
+        alert("올바른 이름을 입력해 주세요.")
+    } else if (number === "" || !checkValidNumber(number) || number.length > 11) {
+        alert("올바른 전화번호를 입력해 주세요.")
+    } else {
+        document.getElementById("find_id_form").submit()
+    }
+
+}

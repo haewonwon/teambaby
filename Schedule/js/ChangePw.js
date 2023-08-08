@@ -91,3 +91,20 @@ btnChangePw.addEventListener("click", function() {
     }
 
 });
+
+function submitChecking() {
+
+    console.log("들어옴")
+
+    var password = inputPW.value;
+    var passwordCheck = inputCheckingPW.value;
+    
+    if (password === "" || !checkValidPW(password) || password.length < 8 || password.length > 20) {
+        alert("올바른 비밀번호를 입력해 주세요.")
+    } else if (passwordCheck === "" || passwordCheck !== password) {
+        alert("올바른 비밀번호 확인을 입력해 주세요.")
+    } else {
+        document.getElementById("find_id_form").submit()
+    }
+
+}

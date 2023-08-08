@@ -1,8 +1,3 @@
-.form_title {
-    margin-top: var(--form-title-margin-top);
-    font-size: var(--form-title-font-size);
-}
-
 p {
     font-size: var(--p-font-size);
     margin: var(--p-margin);
@@ -15,26 +10,6 @@ p {
 .input_form {
     width: var(--input-form-width);
     height: var(--input-form-height);
-}
-
-#error_email {
-    margin-left: var(--error-email-margin-left);
-}
-
-#error_pw {
-    margin-left: var(--error-pw-margin-left);
-}
-
-#error_pw_check {
-    margin-left: var(--error-pw-check-margin-left);
-}
-
-#error_birthday {
-    margin-left: var(--error-birthday-margin-left);
-}
-
-#error_number {
-    margin-left: var(--error-number-margin-left);
 }
 
 .btn_overlap {

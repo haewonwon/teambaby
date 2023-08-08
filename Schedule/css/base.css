@@ -11,11 +11,11 @@
     /* width-size */
     --header-width: 100%;
     --logo-width: 315px;
-    --input-form-width: 300px;
+    --input-form-width: 384px;
     --btn-form-width: 180px;
     --form-width: 641px;
     --login-icon-width: 40px;
-    --input-login-width: 300px;
+    --input-login-width: 384px;
     --btn-login-width: 310px;
     --input-form-width: 260px;
     --btn-overlap-width: 100px;
@@ -23,13 +23,13 @@
     /* height-size */
     --header-height: 168px;
     --logo-height: 121px;
-    --input-form-height: 50px;
+    --input-form-height: 71px;
     --btn-form-height: 75px;
-    --form-height: 400px;
+    --form-height: 451px;
     --login-icon-height: 40px;
-    --input-login-height: 50px;
+    --input-login-height: 71px;
     --btn-login-height: 50px;
-    --input-form-box-height: 70px;
+    --input-form-box-height: 40px;
     --input-form-height: 40px;
     --btn-overlap-height: 40px;
 
@@ -39,7 +39,7 @@
 
     /* padding-size */
     --logo-padding-top: 5px;
-    --error-message-padding-top: 5px;
+    --error-message-padding-top: 10px;
     --p-padding-right: 10px;
     --text-login-padding: 20px;
     --login-box-padding: 10px;
@@ -47,14 +47,9 @@
     --a-padding-top: 5px;
 
     /* margin-size */
-    --error-message-margin-left: 70px;
-    --error-number-find-id-margin-left: 185px;
-    --error-number-find-pw-margin-left: 185px;
-    --error-email-find-pw-margin-left: 100px;
-    --error-pw-change-pw-margin-left: 210px;
-    --error-pw-check-change-pw-margin-left: 185px;
+    --error-message-margin-left: 15px;
 
-    --form-title-margin-top: 230px;
+    --form-title-margin-top: 200px;
     --btn-form-margin: 10px;
     --btn-form-margin-top: 20px;
     --btn-login-margin-left: 190px;
@@ -64,14 +59,7 @@
     --error-message-box-margin-left: 40px;
     --btn-login-margin-top: 10px;
     --btn-login-margin-bottom: 10px;
-
-    --form-title-margin-top: 230px;
     --p-margin: 0;
-    --error-email-margin-left: 90px;
-    --error-pw-margin-left: 110px;
-    --error-pw-check-margin-left: 160px;
-    --error-birthday-margin-left: 110px;
-    --error-number-margin-left: 160px;
     --btn-overlap-margin-left: 10px;
 
     /* font-size */
@@ -84,10 +72,17 @@
 
 }
 
-/* @import url('https://fonts.googleapis.com/css2?family=Keania+One&display=swap');
 body {
-    font-family: 'Keania One', cursive;
-} */
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    font-size: 16;
+    font-weight: 400;
+}
+
+
 
 header {
     position: absolute;
@@ -109,6 +104,18 @@ header {
 button {
     background-color: transparent;
     border: none;
+}
+
+.error_message {
+    margin-left: var(--error-message-margin-left);
+    padding-top: var(--error-message-padding-top);
+    color: var(--red-color);
+}
+
+.form_title {
+    margin-top: var(--form-title-margin-top);
+    font-size: var(--form-title-font-size);
+    font-weight: 400;
 }
 
 /* 햄버거 메뉴 버튼 */

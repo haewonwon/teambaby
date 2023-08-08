@@ -37,3 +37,9 @@ input {
     margin: var(--btn-form-margin);
     margin-top: var(--btn-form-margin-top);
 }
+
+.error_message {
+    margin-left: var(--error-message-margin-left);
+    padding-top: var(--error-message-padding-top);
+    color: var(--red-color);
+}

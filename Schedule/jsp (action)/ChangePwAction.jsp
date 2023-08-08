@@ -10,6 +10,7 @@
 <%@ page import="java.sql.ResultSet" %>
 
 <%
+
 // 앞 페이지에서 오는 데이터에 대해서 한글 인코딩
 request.setCharacterEncoding("UTF-8");
 
@@ -19,38 +20,23 @@ Class.forName("com.mysql.jdbc.Driver");
 // db 연결
 Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/project", "haewon", "kjneeke0609@");
 
-String nameValue = request.getParameter("name_value");
-String phonenumberValue = request.getParameter("phonenumber_value");
+String pwValue = request.getParameter("pw_value");
+String emailValue = request.getParameter("email_value");
 
-String query = "SELECT id FROM user WHERE name=? AND number=?";
+//SQL 만들기
+String query = "UPDATE user SET SET pw = ? WHERE email = ?";
 PreparedStatement statement = connection.prepareStatement(query);
+    
+statement.setString(1, pwValue);
+statement.setString(2, emailValue);
 
-statement.setString(1, nameValue);
-statement.setString(2, phonenumberValue);
-
-ResultSet resultSet = statement.executeQuery();
-
-String idValue = null;
-
-if (resultSet.next()) {
-    idValue = resultSet.getString("id");
-} else {
-    idValue = "일치하는 ID를 찾을 수 없습니다.";
-}
-
-resultSet.close();
-statement.close();
-connection.close();
-
+query.executeUpdate();
 %>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-
-    <h1>아이디 : <%=idValue%> </h1>
-    
-</body>
+<script>
+    function changePw() {
+        window.location.href = "../index.html";
+        alert("비밀번호가 변경되었습니다.");
+    }
+    changePw();
+</script>

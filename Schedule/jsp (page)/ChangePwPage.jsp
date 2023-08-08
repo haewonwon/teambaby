@@ -6,7 +6,6 @@
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="../css/base.css">
     <link rel="stylesheet" type="text/css" href="../css/formpage.css">
-    <link rel="stylesheet" type="text/css" href="../css/find.css">
 </head>
 <body>
 
@@ -23,30 +22,37 @@
             <span></span>
             <span></span>
             <ul id="menu">
-               <div>김해원</div>
-               <div>팀원</div>
-               <div>2002.02.21</div>
-               <div>jephpp@naver.com</div>
-               <div>01030641864</div>
+
             </ul>
         </div>
     </nav>
 
-    <div class="form_title">PW 변경하기</div>
+    <h1 class="form_title">PW 변경하기</h1>
 
     <form>
 
-        <div class="input_form_box">
-            <p>새로운 비밀번호</p>
-            <input type="password" class="input_form" id="pw_value">
-            <div class="error_message" id="error_pw_change_pw"></div>
-        </div>
+        <table>
+            <tr class="input_form_box">
+                <td>
+                    <p>새로운 비밀번호</p>
+                </td>
 
-        <div class="input_form_box">
-            <p>비밀번호 확인</p>
-            <input type="password" class="input_form" id="pw_check_value">
-            <div class="error_message" id="error_pw_check_change_pw"></div>
-        </div>
+                <td>
+                    <input type="password" class="input_form" id="pw_value">
+                    <div class="error_message" id="error_pw_change_pw"></div>
+                </td>
+            </tr>
+            <tr class="input_form_box">
+                <td>
+                    <p>비밀번호 확인</p>
+                </td>
+
+                <td>
+                    <input type="password" class="input_form" id="pw_check_value">
+                    <div class="error_message" id="error_pw_check_change_pw"></div>
+                </td>
+            </tr>
+        </table>
 
         <div class="btn_form_box">
             <input type="button" class="btn_form" id="btn_cancel" value="취소">

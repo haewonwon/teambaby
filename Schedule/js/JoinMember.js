@@ -10,8 +10,6 @@ btnCancel.addEventListener("click", function() {
 });
 
 // 이름 입력 시 예외처리
-var inputName = document.getElementById("name_value");
-var errorName = document.getElementById("error_name");
 // 한글, 영어만
 function checkKoreanEnglish(str) {
     var pattern = /^[가-힣a-zA-Z]+$/;
@@ -19,27 +17,31 @@ function checkKoreanEnglish(str) {
 };
 // 경고 문구 출력 (이름)
 function displayErrorMessageName(message) {
+    var errorName = document.getElementById("error_name");
     errorName.innerText = message;
 };
 // 조건 충족 시, 경고 문구 삭제 (이름)
 function hideErrorName() {
+    var errorName = document.getElementById("error_name");
     errorName.innerText = "";
 };
 // 테두리 빨간색 (이름)
 function NameBorderChangingRed() {
+    var inputName = document.getElementById("name_value");
     inputName.style.border = "1px solid red";
 };
 // 조건 충족 시, 테두리 원상복구 (이름)
 function nameBorderReset() {
+    var inputName = document.getElementById("name_value");
     inputName.style.border = "";
 };
 // 이벤트 함수 (이름)
+var inputName = document.getElementById("name_value");
 inputName.addEventListener("blur", function() {
 
     event.preventDefault();
-
     var name = inputName.value.trim();
-    
+
     if (name === "") {
         displayErrorMessageName("이름을 입력해 주세요.");
         NameBorderChangingRed();
@@ -61,50 +63,36 @@ inputName.addEventListener("blur", function() {
 });
 
 // 이메일 입력 시 예외처리
-var inputEmail = document.getElementById("email_value");
-var errorEmail = document.getElementById("error_email");
 // 이메일 유효성
 function checkValidEmail(email) {
     var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailPattern.test(email);
 };
-// 중복 확인
-// function checkEmailDuplication() {
-//     var form = document.getElementById("join_mamber_form");
-//     var formData = new FormData(form);
-  
-//     fetch("../jsp (action)/JoinMemberAction.jsp", {
-//       method: "POST",
-//       body: formData
-//     })
-//     .then(response => response.text())
-//     .then(data => )
-//     .catch(error => {
-//       console.error("Error:", error);
-//       document.getElementById("error_email").innerText = "오류가 발생했습니다.";
-//     });
-//   }
 // 경고 문구 출력 (이메일)
 function displayErrorMessageEmail(message) {
+    var errorEmail = document.getElementById("error_email");
     errorEmail.innerText = message;
 };
 // 조건 충족 시, 경고 문구 삭제 (이메일)
 function hideErrorEmail() {
+    var errorEmail = document.getElementById("error_email");
     errorEmail.innerText = "";
 };
 // 테두리 빨간색 (이메일)
 function EmailBorderChangingRed() {
+    var inputEmail = document.getElementById("email_value");
     inputEmail.style.border = "1px solid red";
 };
 // 조건 충족 시, 테두리 원상복구 (이메일)
 function emailBorderReset() {
+    var inputEmail = document.getElementById("email_value");
     inputEmail.style.border = "";
 };
 // 이벤트 함수 (이메일)
+var inputEmail = document.getElementById("email_value");
 inputEmail.addEventListener("blur", function() {
 
     event.preventDefault();
-
     var email = inputEmail.value.trim();
 
     if (email === "") {
@@ -127,9 +115,21 @@ inputEmail.addEventListener("blur", function() {
 
 });
 
+var isEmailCheckClicked = false;
+function openCheckEmail() {
+    var email = document.getElementById("email_value").value.trim();
+    if (email === "" || !checkValidEmail(email) || email.length > 320 || email.includes(" ")) {
+        alert("올바른 이메일을 입력해 주세요.")
+    } else {
+        var url = "../jsp (action)/checkEmailAction.jsp";
+        var target = "checkEmail";
+
+        window.open(url, target);
+        isEmailCheckClicked = true;
+    }
+}
+
 // 비밀번호 입력 시 예외처리
-var inputPW = document.getElementById("pw_value");
-var errorPW = document.getElementById("error_pw");
 // 비밀번호 유효성
 function checkValidPW(password) {
     // 영문 (대소문자), 숫자, 특수문자가 포함되어 있는지 확인하는 정규식
@@ -138,26 +138,31 @@ function checkValidPW(password) {
 };
 // 경고 문구 출력 (비밀번호)
 function displayErrorMessagePW(message) {
+    var errorPW = document.getElementById("error_pw");
     errorPW.innerText = message;
 };
 // 조건 충족 시, 경고 문구 삭제 (비밀번호)
 function hideErrorPW() {
+    var errorPW = document.getElementById("error_pw");
     errorPW.innerText = "";
 };
 // 테두리 빨간색 (비밀번호)
 function PWBorderChangingRed() {
+    var inputPW = document.getElementById("pw_value");
     inputPW.style.border = "1px solid red";
 };
 // 조건 충족 시, 테두리 원상복구 (비밀번호)
 function pwBorderReset() {
+    var inputPW = document.getElementById("pw_value");
     inputPW.style.border = "";
 };
 // 이벤트 함수 (비밀번호)
+var inputPW = document.getElementById("pw_value");
 inputPW.addEventListener("blur", function() {
 
     event.preventDefault();
     var password = inputPW.value;
-    
+
     if (password === "") {
         displayErrorMessagePW("비밀번호를 입력해 주세요.");
         PWBorderChangingRed();
@@ -179,25 +184,28 @@ inputPW.addEventListener("blur", function() {
 });
 
 // 비밀번호 확인 예외처리
-var inputCheckingPW = document.getElementById("pwCheck_value");
-var errorPwCheck = document.getElementById("error_pw_check");
 // 경고 문구 출력 (비밀번호 확인)
 function displayErrorMessagePwCheck(message) {
+    var errorPwCheck = document.getElementById("error_pw_check");
     errorPwCheck.innerText = message;
 };
 // 조건 충족 시, 경고 문구 삭제 (비밀번호 확인)
 function hideErrorPwCheck() {
+    var errorPwCheck = document.getElementById("error_pw_check");
     errorPwCheck.innerText = "";
 };
 // 테두리 빨간색 (비밀번호 확인)
 function PwCheckBorderChangingRed() {
+    var inputCheckingPW = document.getElementById("pwCheck_value");
     inputCheckingPW.style.border = "1px solid red";
 };
 // 조건 충족 시, 테두리 원상복구 (비밀번호 확인)
 function pwCheckBorderReset() {
+    var inputCheckingPW = document.getElementById("pwCheck_value");
     inputCheckingPW.style.border = "";
 };
 // 이벤트 함수 (비밀번호 확인)
+var inputCheckingPW = document.getElementById("pwCheck_value");
 inputCheckingPW.addEventListener("blur", function() {
 
     event.preventDefault();
@@ -220,25 +228,28 @@ inputCheckingPW.addEventListener("blur", function() {
 // 직급 예외처리 (팀원, 팀장이 아닐 때의 예외처리 하지만 팀원 디폴트에 팀원, 팀장 외에는 다른 select option이 없음 필요하다면 추후에 추가하기)
 
 // 생년월일 예외처리
-var inputBirthday = document.getElementById("birthday_value");
-var errorBday = document.getElementById("error_birthday");
 // 오늘 날짜 이후로 선택 불가
+var inputBirthday = document.getElementById("birthday_value");
 var today = new Date().toISOString().split("T")[0];
 inputBirthday.setAttribute("max", today);
 // 경고 문구 출력 (생년월일)
 function displayErrorMessageBday(message) {
+    var errorBday = document.getElementById("error_birthday");
     errorBday.innerText = message;
 };
 // 조건 충족 시, 경고 문구 삭제 (생년월일)
 function hideErrorBday() {
+    var errorBday = document.getElementById("error_birthday");
     errorBday.innerText = "";
 };
 // 테두리 빨간색 (생년월일)
 function BdayBorderChangingRed() {
+    var inputBirthday = document.getElementById("birthday_value");
     inputBirthday.style.border = "1px solid red";
 };
 // 조건 충족 시, 테두리 원상복구 (생년월일)
 function BdayBorderReset() {
+    var inputBirthday = document.getElementById("birthday_value");
     inputBirthday.style.border = "";
 };
 // 이벤트 함수 (생년월일)
@@ -258,60 +269,34 @@ inputBirthday.addEventListener("blur", function() {
 });
 
 // 전화번호 예외처리
-var inputNumber = document.getElementById("phonenumber_value");
-var errorNumber = document.getElementById("error_number");
 // 전화번호 유효성
 function checkValidNumber(number) {
     // 하이픈을 제외한 전화번호
     var pattern = /^\+?\d{1,3}?\d{3,14}$/;
     return pattern.test(number);
 };
-// 중복 확인
-// function checkNumberDuplication() {
-
-//     var phoneNumber = document.getElementById("phonenumber_value").value;
-
-//     fetch("../jsp (action)/JoinMemberAction.jsp", {
-//         method: "POST",
-//         headers: {
-//             "Content-Type": "application/x-www-form-urlencoded"
-//         },
-//         body: "phoneNumber=" + encodeURIComponent(phoneNumber)
-//     })
-//     .then(response => response.json())
-//     .then(data => {
-//         var phoneNumberResultElement = document.getElementById("error_number");
-//         if (data.duplicate) {
-//             phoneNumberResultElement.textContent = "이미 사용 중인 전화번호입니다.";
-//         } else {
-//             phoneNumberResultElement.textContent = "사용 가능한 전화번호입니다.";
-//             document.getElementById("phonenumber_value").disabled = true;
-//         }
-//     })
-//     .catch(error => {
-//         console.error("Error:", error);
-//         var phoneNumberResultElement = document.getElementById("error_number");
-//         phoneNumberResultElement.textContent = "오류가 발생했습니다.";
-//     });
-
-// }
 // 경고 문구 출력 (전화번호)
 function displayErrorMessageNumber(message) {
+    var errorNumber = document.getElementById("error_number");
     errorNumber.innerText = message;
 };
 // 조건 충족 시, 경고 문구 삭제 (전화번호)
 function hideErrorNumber() {
+    var errorNumber = document.getElementById("error_number");
     errorNumber.innerText = "";
 };
 // 테두리 빨간색 (전화번호)
 function numberBorderChangingRed() {
+    var inputNumber = document.getElementById("phonenumber_value");
     inputNumber.style.border = "1px solid red";
 };
 // 조건 충족 시, 테두리 원상복구 (전화번호)
 function numberBorderReset() {
+    var inputNumber = document.getElementById("phonenumber_value");
     inputNumber.style.border = "";
 };
 // 이벤트 함수 (전화번호)
+var inputNumber = document.getElementById("phonenumber_value");
 inputNumber.addEventListener("blur", function() {
 
     event.preventDefault();
@@ -342,3 +327,65 @@ inputNumber.addEventListener("input", function() {
     phoneNumber = phoneNumber.replace(/\D/g, ""); // 숫자 이외의 문자 제거
     inputNumber.value = phoneNumber;
 });
+
+var isNumberCheckClicked = false;
+function openCheckNumber() {
+    var number = document.getElementById("phonenumber_value").value.trim();
+    if (number ==="" || !checkValidNumber(number) || number.length > 11 || number.includes(" ")) {
+        alert("올바른 전화번호를 입력해 주세요.")
+    } else {
+        var url = "../jsp (action)/checkPhoneAction.jsp";
+        var target = "checkNumber";
+
+        window.open(url, target);
+        isNumberCheckClicked = true;
+    }
+}
+
+function submitChecking() {
+
+    console.log("들어와짐")
+
+    var name = document.getElementById("name_value").value.trim()
+    var email = document.getElementById("email_value").value.trim()
+    var password = document.getElementById("pw_value").value.trim()
+    var passwordCheck = document.getElementById("pwCheck_value").value.trim()
+    var birthday = document.getElementById("birthday_value").value
+    var number = document.getElementById("phonenumber_value").value
+
+    if (name === "" || !checkKoreanEnglish(name) || name.length < 2 || name.length > 7 || name.includes(" ")) {
+        alert("올바른 이름을 입력해 주세요.")
+    }
+    
+    else if (email === "" || !checkValidEmail(email) || email.length > 320 || email.includes(" ")) {
+        alert("올바른 이메일을 입력해 주세요.")
+    }
+
+    else if (!isEmailCheckClicked) {
+        alert("이메일 중복 체크를 해 주세요.")
+    }
+
+    else if (password === "" || !checkValidPW(password) || password.length < 8 || password.length > 20 || password.includes(" ")) {
+        alert("올바른 비밀번호를 입력해 주세요.")
+    }
+
+    else if (passwordCheck === "" || passwordCheck !== password) {
+        alert("올바른 비밀번호 확인을 입력해 주세요.")
+    }
+    
+    else if (birthday === "") {
+        alert("생일을 선택해 주세요.")
+    }
+    
+    else if (number === "" || !checkValidNumber(number) || number.length > 11 || number.includes(" ")) {
+        alert("올바른 전화번호를 입력해 주세요.")
+    }
+
+    else if (!isNumberCheckClicked) {
+        alert("전화번호 중복 체크를 해 주세요.")
+    }
+
+    else {
+        document.getElementById("join_mamber_form").submit()
+    }
+}

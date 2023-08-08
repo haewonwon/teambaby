@@ -147,3 +147,23 @@ inputNumber.addEventListener("input", function() {
     phoneNumber = phoneNumber.replace(/\D/g, ""); // 숫자 이외의 문자 제거
     inputNumber.value = phoneNumber;
 });
+
+function submitChecking() {
+
+    console.log("들어옴")
+
+    var name = inputName.value.trim();
+    var number = inputNumber.value;
+    var email = inputEmail.value.trim();
+    
+    if (name === "" || !checkKoreanEnglish(name) || name.length < 2 || name.length > 7) {
+        alert("올바른 이름을 입력해 주세요.")
+    } else if (number === "" || !checkValidNumber(number) || number.length > 11) {
+        alert("올바른 전화번호를 입력해 주세요.")
+    } else if (email === "" || !checkValidEmail(email) || email.length > 320) {
+        alert("올바른 이메일을 입력해 주세요.")
+    } else {
+        document.getElementById("find_id_form").submit()
+    }
+
+}

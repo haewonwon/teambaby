@@ -32,7 +32,7 @@
         </div>
     </nav>
 
-    <form>
+    <form action="jsp (action)/LoginAction.jsp" id="index_form">
 
         <p class="text_login">Log In</p>
 
@@ -47,7 +47,7 @@
         </div>
 
         <div id="error_message_box"></div>
-        <input type="submit" id="btn_login" value="Log In">
+        <input type="button" id="btn_login" value="Log In" onclick="submitChecking()">
 
         <a href="jsp (page)/FindPwPage.jsp">PW 찾기 |</a>
         <a href="jsp (page)/FindIdPage.jsp">ID 찾기 |</a>
@@ -55,6 +55,7 @@
 
     </form>
 
+    <jsp:include page="../jsp (action)/navAction.jsp" />
     <script type="text/javascript" src="js/index.js"></script>
 </body>
 </html>

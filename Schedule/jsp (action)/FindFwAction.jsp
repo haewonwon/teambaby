@@ -20,22 +20,23 @@ Class.forName("com.mysql.jdbc.Driver");
 Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/project", "haewon", "kjneeke0609@");
 
 String nameValue = request.getParameter("name_value");
-String phonenumberValue = request.getParameter("phonenumber_value");
+String emailValue = request.getParameter("email_value");
+String numberValue = request.getParameter("phonenumber_value");
 
-String query = "SELECT id FROM user WHERE name=? AND number=?";
+//SQL 만들기
+String query = "SELECT pw FROM user WHERE name=? AND email=? AND number=?";
 PreparedStatement statement = connection.prepareStatement(query);
 
 statement.setString(1, nameValue);
-statement.setString(2, phonenumberValue);
+statement.setString(2, emailValue);
+statement.setString(3, phonenumberValue);
 
 ResultSet resultSet = statement.executeQuery();
 
-String idValue = null;
+boolean success = false;
 
-if (resultSet.next()) {
-    idValue = resultSet.getString("id");
-} else {
-    idValue = "일치하는 ID를 찾을 수 없습니다.";
+if(resultSet.next()) {
+    success = true;
 }
 
 resultSet.close();
@@ -43,14 +44,4 @@ statement.close();
 connection.close();
 
 %>
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-
-    <h1>아이디 : <%=idValue%> </h1>
-    
-</body>
+<jsp:forward page="jsp (action)/ChangePwAction.jsp"/>

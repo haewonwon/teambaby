@@ -8,34 +8,32 @@
 <%@ page import="java.sql.PreparedStatement" %>
 <!-- ResultSet -->
 <%@ page import="java.sql.ResultSet" %>
+<%@ page import="java.util.ArrayList" %>
 
 <%
+
 // 앞 페이지에서 오는 데이터에 대해서 한글 인코딩
 request.setCharacterEncoding("UTF-8");
 
-// Connector 파일 불러와서 MariaDB 연결
-Class.forName("com.mysql.jdbc.Driver");
+String id = (String) session.getAttribute("id_value");
 
-// db 연결
+Class.forName("com.mysql.jdbc.Driver");
 Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/project", "haewon", "kjneeke0609@");
 
-String nameValue = request.getParameter("name_value");
-String phonenumberValue = request.getParameter("phonenumber_value");
-
-String query = "SELECT id FROM user WHERE name=? AND number=?";
+String query = "SELECT * FROM schedule WHERE id = ?";
 PreparedStatement statement = connection.prepareStatement(query);
-
-statement.setString(1, nameValue);
-statement.setString(2, phonenumberValue);
+statement.setString(1, id);
 
 ResultSet resultSet = statement.executeQuery();
 
-String idValue = null;
+ArrayList<Map<String, String>> scheduleList = new ArrayList<>();
 
-if (resultSet.next()) {
-    idValue = resultSet.getString("id");
-} else {
-    idValue = "일치하는 ID를 찾을 수 없습니다.";
+while (resultSet.next()) {
+    Map<String, String> scheduleData = new HashMap<>();
+    scheduleData.put("id", resultSet.getString("id"));
+    scheduleData.put("content", resultSet.getString("content"));
+    scheduleData.put("start_time", resultSet.getString("start_time"));
+    scheduleList.add(scheduleData);
 }
 
 resultSet.close();
@@ -43,14 +41,3 @@ statement.close();
 connection.close();
 
 %>
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-
-    <h1>아이디 : <%=idValue%> </h1>
-    
-</body>

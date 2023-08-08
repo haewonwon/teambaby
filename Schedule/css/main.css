@@ -2,21 +2,55 @@
     width: 100%;
     height: 115px;
     background-color: var(--blue-color-two);
-    position: fixed;
+    position: absolute;
     left: 0;
-    margin-top: 120px;
+    top: 168px;
 }
 
 input {
     width: 250px;
+    height: 70px;
+}
+
+#btn_add {
+    float: right;
+    padding-right: 100px;
+    width: 50px;
     height: 50px;
 }
 
-#btn_save {
-    width: 100px;
-    height: 50px;
-    background-color: var(--blue-color-two);
-    border: none;
-    border-radius: 30px;
+main {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    margin-top: 280px;
 }
-  
+
+.schedule_box {
+    width: 100%;
+    height: fit-content;
+    border: solid black 1px;
+}
+
+#minus_btn {
+    transform: rotate(90deg);
+}
+
+#date_box {
+    display: inline-flex;
+    width: fit-content;
+}
+
+#year_display {
+    font-size: 50px;
+    padding-top: 7px;
+}
+
+#date_select {
+    width: 80px;
+    height: 80px;
+    border: none;
+    border-radius: 10px;
+    font-size: 40px;
+}

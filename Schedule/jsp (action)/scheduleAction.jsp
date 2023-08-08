@@ -14,8 +14,9 @@
 // 앞 페이지에서 오는 데이터에 대해서 한글 인코딩
 request.setCharacterEncoding("UTF-8");
 
-String idValue = request.getParameter("id_value");
-String pwValue = request.getParameter("pw_value");
+String scheduleValue = request.getParameter("input_schedule");
+String dateValue = request.getParameter("input_date");
+String timeValue = request.getParameter("input_time");
 
 // Connector 파일 불러와서 MariaDB 연결
 Class.forName("com.mysql.jdbc.Driver");
@@ -23,31 +24,37 @@ Class.forName("com.mysql.jdbc.Driver");
 // db 연결
 Connection connect = DriverManager.getConnection("jdbc:mysql://localhost/imitation", "haewon", "kjneeke0609@");
 
-String sql = "SELECT * FROM user WHERE email=? AND pw=?";
-    PreparedStatement query = connect.prepareStatement(sql);
-    query.setString(1, idValue);
-    query.setString(2, pwValue);
-    ResultSet rs = query.executeQuery();
+PreparedStatement query = null;
+boolean success = false;
 
-// 로그인 성공 시 세션에 사용자 정보 저장
-if (rs.next()) {
-    String userRank = rs.getString("rank");
+try {
 
-    session.setAttribute("id_value", idValue);
-    session.setAttribute("userRank", userRank);
+    String sql = "INSERT INTO schedule (id, content, start_time) VALUES (?, ?, ?)";
+    query = connect.prepareStatement(sql);
 
-    // 클라이언트를 다른 URL로 리다이렉트
-    response.sendRedirect("../jsp (page)/main.jsp");
-    
-} else {
-       
-    response.sendRedirect("LoginAction.jsp");
+    query.setString(1, scheduleValue);
+    query.setString(2, dateValue);
+    query.setString(3, timeValue);
 
+    query.executeUpdate();
+    success = true;
+
+} catch (Exception e) {
+    System.out.println("An exception occurred: " + e.getMessage());
+    e.printStackTrace();
+} finally {
+    if (query != null) {
+        query.close();
+    }
+    if (connect != null) {
+        connect.close();
+    }
 }
 
-// 자원 해제
-rs.close();
-query.close();
-connect.close();
-
 %>
+
+<script>
+
+    
+
+</script>

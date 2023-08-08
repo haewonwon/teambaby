@@ -24,46 +24,42 @@
             <span></span>
             <span></span>
             <ul id="menu">
-               <div>김해원</div>
-               <div>팀원</div>
-               <div>2002.02.21</div>
-               <div>jephpp@naver.com</div>
-               <div>01030641864</div>
+                
             </ul>
+        </div>
+        <div id="member_info">
+
         </div>
     </nav>
 
     <div id="assistant_nav">
 
-        <!-- <input type="number" id="year" name="year" step="1" value="2023" min="1900" max="2099">
-        <input type="month"> -->
-        <button id="btn_add"><img src="../icon/free-icon-addition-thick-symbol-20183.png"></button>
+        <div id="date_box">
+            <button id="minus_btn" onclick="minusBtnClickEvent()"><img id="minus_btn" src="../icon/free-icon-arrow-right-6423875.png"></button>
+            <span id="year_display"></span>
+            <button id="plus_btn" onclick="plusBtnClickEvent()"><img id="plus_btn" src="../icon/free-icon-arrow-right-6423875.png"></button>
 
-    </div>
-
-    <div class="modal" id="modal">
-        <div class="modal_content">
-            <span class="close" id="close">&times;</span>
-            <p>새로운 이벤트</p>
-            <div>
-                <input type="text" id="schedule_content" placeholder="일정">
-                <div class="error_message" id="error_content"></div>
-            </div>
-            <div>
-                <p>날짜</p>
-                <input type="date" id="schedule_date">
-                <div class="error_message" id="error_date"></div>
-            </div>
-            <div>
-                <p>시작 시간</p>
-                <input type="time" id="schedule_time">
-                <div class="error_message" id="erroe_time"></div>
-            </div>
-            <button id="btn_save">확인</button>
+            <select id="date_select">
+                <option value="1월">1월</option>
+                <option value="2월">2월</option>
+                <option value="3월">3월</option>
+                <option value="4월">4월</option>
+                <option value="5월">5월</option>
+                <option value="6월">6월</option>
+                <option value="7월">7월</option>
+                <option value="8월" selected>8월</option>
+                <option value="9월">9월</option>
+                <option value="10월">10월</option>
+                <option value="11월">11월</option>
+                <option value="12월">12월</option>
+            </select>
         </div>
+
+        <button id="btn_add" onclick="windowOpen()"><img src="../icon/free-icon-addition-thick-symbol-20183.png"></button>
+
     </div>
 
-    <main>
+    <main id="schedule_main">
         
     </main>
     

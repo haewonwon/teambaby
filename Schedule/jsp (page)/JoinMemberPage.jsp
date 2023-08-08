@@ -24,69 +24,105 @@
             <span></span>
             <span></span>
             <ul id="menu">
-               <div>김해원</div>
-               <div>팀원</div>
-               <div>2002.02.21</div>
-               <div>jephpp@naver.com</div>
-               <div>01030641864</div>
+                
             </ul>
         </div>
     </nav>
 
-    <div class="form_title">회원가입</div>
+    <h1 class="form_title">회원가입</h1>
 
     <form id="join_mamber_form" action="../jsp (action)/JoinMemberAction.jsp">
 
-        <div class="input_form_box">
-            <p>이름</p>
-            <input type="text" class="input_form" id="name_value" minlength="2" maxlength="7">
-            <div class="error_message" id="error_name"></div>
-        </div>
+        <table>
 
-        <div class="input_form_box">
-            <p>이메일</p>
-            <input type="text" class="input_form" id="email_value" maxlength="320">
-            <input type="button" class="btn_overlap" id="btn_overlap_email" value="중복">
-            <div class="error_message" id="error_email"></div>
-        </div>
+            <tr class="input_form_box">
+                <td>
+                    <p>이름</p>
+                </td>
 
-        <div class="input_form_box">
-            <p>비밀번호</p>
-            <input type="password" class="input_form" id="pw_value" minlength="6" maxlength="20">
-            <div class="error_message" id="error_pw"></div>
-        </div>
+                <td>
+                    <input type="text" class="input_form" id="name_value" name="name_value" minlength="2" maxlength="7">
+                    <div class="error_message" id="error_name"></div>
+                </td>
+            </tr>
 
-        <div class="input_form_box">
-            <p>비밀번호 확인</p>
-            <input type="password" class="input_form" id="pwCheck_value" minlength="6" maxlength="20">
-            <div class="error_message" id="error_pw_check"></div>
-        </div>
+            <tr class="input_form_box">
+                <td>
+                    <p>이메일</p>
+                </td>
 
-        <div class="input_form_box">
-            <p>직급</p>
-            <select class="input_form" id="select_rank">
-                <option value="team_member" selected>팀원</option>
-                <option value="team_leader">팀장</option>
-            </select>
-            <div class="error_message" id="error_rank"></div>
-        </div>
+                <td>
+                    <input type="text" class="input_form" id="email_value" name="email_value" maxlength="320">
+                    <input type="button" class="btn_overlap" id="btn_overlap_email" value="중복" onclick="openCheckEmail()">
+                    <div class="error_message" id="error_email"></div>
+                </td>
+            </tr>
 
-        <div class="input_form_box">
-            <p>생년월일</p>
-            <input type="date" class="input_form" id="birthday_value">
-            <div class="error_message" id="error_birthday"></div>
-        </div>
+            <tr class="input_form_box">
+                <td>
+                    <p>비밀번호</p>
+                </td>
 
-        <div class="input_form_box">
-            <p>휴대전화 번호</p>
-            <input type="text" class="input_form" id="phonenumber_value">
-            <input type="button" class="btn_overlap" id="btn_overlap_phonenumber" value="중복" maxlength="11">
-            <div class="error_message" id="error_number"></div>
-        </div>
+                <td>
+                    <input type="password" class="input_form" id="pw_value" name="pw_value" minlength="6" maxlength="20">
+                    <div class="error_message" id="error_pw"></div>
+                </td>
+            </tr>
+
+            <tr class="input_form_box">
+                <td>
+                    <p>비밀번호 확인</p>
+                </td>
+
+                <td>
+                    <input type="password" class="input_form" id="pwCheck_value" name="pwCheck_value" minlength="6" maxlength="20">
+                    <div class="error_message" id="error_pw_check"></div>
+                </td>
+            </tr>
+
+            <tr class="input_form_box">
+                <td>
+                    <p>직급</p>
+                </td>
+
+                <td>
+                    <select class="input_form" id="select_rank" name="select_rank">
+                        <option value="팀원" selected>팀원</option>
+                        <option value="팀장">팀장</option>
+                    </select>
+                    <div class="error_message" id="error_rank"></div>
+                </td>
+            </tr>
+
+            <tr class="input_form_box">
+                <td>
+                    <p>생년월일</p>
+                </td>
+
+                <td>
+                    <input type="date" class="input_form" id="birthday_value" name="birthday_value">
+                    <div class="error_message" id="error_birthday"></div>
+                </td>
+            </tr>
+
+            <tr class="input_form_box">
+                <td>
+                    <p>휴대전화 번호</p>
+                </td>
+
+                <td>
+                    <input type="text" class="input_form" id="phonenumber_value" name="phonenumber_value">
+                    <input type="button" class="btn_overlap" id="btn_overlap_phonenumber" value="중복" maxlength="11" onclick="openCheckNumber()">
+                    <input type="hidden" id="numberCheckResult" name="numberCheckResult" value="">
+                    <div class="error_message" id="error_number"></div>
+                </td>
+            </tr>
+
+        </table>
 
         <div class="btn_form_box">
             <input type="button" class="btn_form" id="btn_cancel" value="취소">
-            <input type="submit" class="btn_form" id="btn_join" value="확인">
+            <input type="button" class="btn_form" id="btn_join" value="확인" onclick="submitChecking()">
         </div>
 
     </form>
