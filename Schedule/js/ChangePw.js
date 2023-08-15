@@ -21,42 +21,6 @@ function checkValidPW(password) {
     return pattern.test(password);
 };
 
-// 경고 문구 출력 (비밀번호)
-function displayErrorMessagePW(message) {
-    errorPW.innerText = message;
-};
-// 경고 문구 출력 (비밀번호 확인)
-function displayErrorMessagePwCheck(message) {
-    errorPwCheck.innerText = message;
-};
-
-// 조건 충족 시, 경고 문구 삭제 (비밀번호)
-function hideErrorPW() {
-    errorPW.innerText = "";
-};
-// 조건 충족 시, 경고 문구 삭제 (비밀번호 확인)
-function hideErrorPwCheck() {
-    errorPwCheck.innerText = "";
-};
-
-// 테두리 빨간색 (비밀번호)
-function PWBorderChangingRed() {
-    inputPW.style.border = "1px solid red";
-};
-// 테두리 빨간색 (비밀번호 확인)
-function PwCheckBorderChangingRed() {
-    inputCheckingPW.style.border = "1px solid red";
-};
-
-// 조건 충족 시, 테두리 원상복구 (비밀번호)
-function pwBorderReset() {
-    inputPW.style.border = "";
-};
-// 조건 충족 시, 테두리 원상복구 (비밀번호 확인)
-function pwCheckBorderReset() {
-    inputCheckingPW.style.border = "";
-};
-
 // 이벤트 함수 (비밀번호)
 btnChangePw.addEventListener("click", function() {
 
@@ -65,29 +29,29 @@ btnChangePw.addEventListener("click", function() {
     var passwordCheck = inputCheckingPW.value;
     
     if (password === "") {
-        displayErrorMessagePW("비밀번호를 입력해 주세요.");
-        PWBorderChangingRed();
+        errorPW.innerText = "비밀번호를 입력해 주세요.";
+        inputPW.style.border = "1px solid red";
     } else if (!checkValidPW(password)) {
-        displayErrorMessagePW("비밀번호는 영문 (대소문자), 숫자, 특수문자를 포함해야 합니다.");
-        PWBorderChangingRed();
+        errorPW.innerText = "비밀번호는 영문 (대소문자), 숫자, 특수문자를 포함해야 합니다.";
+        inputPW.style.border = "1px solid red";
     } else if (password.length < 8 || password.length > 20) {
         // 길이 제한 (8~20)
-        displayErrorMessagePW("비밀번호는 8자에서 20자 사이로 입력해 주세요.");
-        PWBorderChangingRed();
+        errorPW.innerText = "비밀번호는 8자에서 20자 사이로 입력해 주세요.";
+        inputPW.style.border = "1px solid red";
     } else {
-        hideErrorPW();
-        pwBorderReset();
+        errorPW.innerText = "";
+        inputPW.style.border = "";
     }
 
     if (passwordCheck === "") {
-        displayErrorMessagePwCheck("한 번 더 비밀번호를 입력해 주세요.");
-        PwCheckBorderChangingRed();
+        errorPwCheck.innerText = "한 번 더 비밀번호를 입력해 주세요.";
+        inputCheckingPW.style.border = "1px solid red";
     } else if (passwordCheck !== password) {
-        displayErrorMessagePwCheck("비밀번호가 일치하지 않습니다.");
-        PwCheckBorderChangingRed();
+        errorPwCheck.innerText = "비밀번호가 일치하지 않습니다.";
+        inputCheckingPW.style.border = "1px solid red";
     } else {
-        hideErrorPwCheck();
-        pwCheckBorderReset();
+        errorPwCheck.innerText = "";
+        inputCheckingPW.style.border = "";
     }
 
 });
@@ -104,7 +68,11 @@ function submitChecking() {
     } else if (passwordCheck === "" || passwordCheck !== password) {
         alert("올바른 비밀번호 확인을 입력해 주세요.")
     } else {
-        document.getElementById("find_id_form").submit()
+        document.getElementById("change_pw_form").submit()
     }
 
+}
+
+function btnClickEvent() {
+    alert("로그인 후 이용 가능한 서비스입니다.")
 }

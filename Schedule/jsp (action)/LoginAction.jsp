@@ -16,6 +16,7 @@ request.setCharacterEncoding("UTF-8");
 
 String idValue = request.getParameter("id_value");
 String pwValue = request.getParameter("pw_value");
+boolean success = true;
 
 // Connector 파일 불러와서 MariaDB 연결
 Class.forName("com.mysql.jdbc.Driver");
@@ -23,26 +24,25 @@ Class.forName("com.mysql.jdbc.Driver");
 // db 연결
 Connection connect = DriverManager.getConnection("jdbc:mysql://localhost/imitation", "haewon", "kjneeke0609@");
 
-String sql = "SELECT * FROM user WHERE email=? AND pw=?";
+String sql = "SELECT id, pw FROM user WHERE email=?";
     PreparedStatement query = connect.prepareStatement(sql);
     query.setString(1, idValue);
-    query.setString(2, pwValue);
     ResultSet rs = query.executeQuery();
 
-// 로그인 성공 시 세션에 사용자 정보 저장
 if (rs.next()) {
-    String userRank = rs.getString("rank");
+    String userID = rs.getString("id");
+    String userPW = rs.getString("pw");
 
-    session.setAttribute("id_value", idValue);
-    session.setAttribute("userRank", userRank);
+    if (pwValue.equals(userPW)) {
+      success = true;
+      session.setAttribute("id", userID);
+    }
+    else {
+      success = false;
+    }
 
-    // 클라이언트를 다른 URL로 리다이렉트
-    response.sendRedirect("../jsp (page)/main.jsp");
-    
 } else {
-       
-    response.sendRedirect("LoginAction.jsp");
-
+    success = false;
 }
 
 // 자원 해제
@@ -51,3 +51,18 @@ query.close();
 connect.close();
 
 %>
+
+<script>
+
+    function locateMainPage() {
+        window.location.href = "../jsp (page)/main.jsp";
+    };
+
+    if (<%=success%> == true) {
+        locateMainPage();
+    } else {
+        alert("로그인에 실패했습니다.");
+        history.back();
+    }
+
+</script>

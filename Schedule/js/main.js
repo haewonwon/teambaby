@@ -1,15 +1,5 @@
-// 전역 변수
-var scheduleArray =
-[
-    "1일 화 스테이지어스",
-    "2일 수 대전 여행",
-    "3일 목 이마트 24 알바",
-    "4일 금 이마트 24 알바"
-]
-
 // 함수 실행
 printSchedule();
-currentYearDisplay();
 
 // 일정 height 는 fit-content 고정 사이즈 안 됨
 
@@ -32,27 +22,40 @@ currentYearDisplay();
 // }
 
 // 현재 연도 가져오기
+var currentYear = new Date().getFullYear();
+var currentMonth = new Date().getMonth() + 1;
+
 function currentYearDisplay() {
-
     var yearDisplay = document.getElementById("year_display");
-    var currentYear = new Date().getFullYear();
     yearDisplay.innerHTML = currentYear;
-
 }
 
-function minusBtnClickEvent() {
+function changeYear(yearDiff) {
+    currentYear += yearDiff;
+    updateQueryString();
+    currentYearDisplay();
 
-    var yearDisplay = document.getElementById("year_display");
-    yearDisplay.innerHTML = parseInt(yearDisplay.innerHTML) - 1;
-
+    var backendURL = '백엔드URL' + '?year=' + currentYear + '&month=' + currentMonth;
+    window.location.href = backendURL;
 }
 
-function plusBtnClickEvent() {
-
-    var yearDisplay = document.getElementById("year_display");
-    yearDisplay.innerHTML = parseInt(yearDisplay.innerHTML) + 1;
-
+function updateQueryString() {
+    var url = "main.jsp?year=" + currentYear + "&month=" + currentMonth;
+    window.history.replaceState({}, "", url);
+    location.reload();
 }
+
+function updateDate() {
+    currentMonth = parseInt(document.getElementById("date_select").value);
+    updateQueryString();
+    currentYearDisplay();
+}
+
+// 초기 로드시 현재 연도 표시
+currentYearDisplay();
+updateQueryString();
+
+console.log(scheduleArray);
 
 // 일정 출력
 function printSchedule() {
@@ -63,22 +66,27 @@ function printSchedule() {
         var tmpdiv = document.createElement("div");
         tmpdiv.className = "schedule_box"
 
-        tmpdiv.innerHTML = `
-        <p>${scheduleItem}</p>
-        <button class="edit_button">수정</button>
-        <button class="delete_button">삭제</button>
-        `;
         document.getElementsByTagName("main")[0].appendChild(tmpdiv);
 
-        var editBtn = tmpdiv.querySelector(".edit_button");
-        var deleteBtn = tmpdiv.querySelector(".delete_button");
+        var tmpP = document.createElement("p");
+        tmpP.textContent = scheduleItem
 
-        editBtn.addEventListener("click", function() {
+        var tmpBtnEdit = document.createElement("button");
+        tmpBtnEdit.textContent = "수정"
+
+        var tmpBtnDel = document.createElement("button");
+        tmpBtnDel.textContent = "삭제"
+
+        tmpdiv.appendChild(tmpP)
+        tmpdiv.appendChild(tmpBtnEdit)
+        tmpdiv.appendChild(tmpBtnDel)
+
+        tmpBtnEdit.addEventListener("click", function() {
             var scheduleText = this.parentElement.querySelector("p").textContent;
             editSchedule(scheduleText);
         });
 
-        deleteBtn.addEventListener("click", function() {
+        tmpBtnDel.addEventListener("click", function() {
             if(confirm("일정을 삭제하시겠습니까?")) {
                 alert("일정이 삭제되었습니다.")
             } else {
@@ -126,4 +134,16 @@ function openEditPopup(originalText, editedText) {
       "width=400, height=400, top=100, left=100"
     );
 
+}
+
+function menuBtnClickEvent() {
+    var sideMenu = document.getElementById("side_menu");
+
+    if (sideMenu.style.left === "0px") {
+        // 메뉴가 이미 열려 있는 경우
+        sideMenu.style.left = "-250px"; // 왼쪽으로 숨김
+    } else {
+        // 메뉴가 닫혀 있는 경우
+        sideMenu.style.left = "0px"; // 왼쪽으로 이동하여 나타냄
+    }
 }

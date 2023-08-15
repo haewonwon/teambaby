@@ -28,42 +28,6 @@ function checkValidNumber(number) {
     return pattern.test(number);
 };
 
-// 경고 문구 출력 (이름)
-function displayErrorMessageName(message) {
-    errorName.innerText = message;
-};
-// 경고 문구 출력 (전화번호)
-function displayErrorMessageNumber(message) {
-    errorNumber.innerText = message;
-};
-
-// 조건 충족 시, 경고 문구 삭제 (이름)
-function hideErrorName() {
-    errorName.innerText = "";
-};
-// 조건 충족 시, 경고 문구 삭제 (전화번호)
-function hideErrorNumber() {
-    errorNumber.innerText = "";
-};
-
-// 테두리 빨간색 (이름)
-function NameBorderChangingRed() {
-    inputName.style.border = "1px solid red";
-};
-// 테두리 빨간색 (전화번호)
-function numberBorderChangingRed() {
-    inputNumber.style.border = "1px solid red";
-};
-
-// 조건 충족 시, 테두리 원상복구 (이름)
-function nameBorderReset() {
-    inputName.style.border = "";
-};
-// 조건 충족 시, 테두리 원상복구 (전화번호)
-function numberBorderReset() {
-    inputNumber.style.border = "";
-};
-
 // 이벤트 함수
 btnFindId.addEventListener("click", function() {
 
@@ -73,33 +37,33 @@ btnFindId.addEventListener("click", function() {
     var number = inputNumber.value;
     
     if (name === "") {
-        displayErrorMessageName("이름을 입력해 주세요.");
-        NameBorderChangingRed(); // 재활용하는 함수가 아니고, 짧은 함수라면 그냥 안에 같이 사용
+        errorName.innerText = "이름을 입력해 주세요.";
+        inputName.style.border = "1px solid red";
     } else if (!checkKoreanEnglish(name)) {
-        displayErrorMessageName("이름은 한글과 영어만 입력 가능합니다.");
-        NameBorderChangingRed();
+        errorName.innerText = "이름은 한글과 영어만 입력 가능합니다.";
+        inputName.style.border = "1px solid red";
     } else if (name.length < 2 || name.length > 7) {
         // 길이 제한 (2~7)
-        displayErrorMessageName("이름은 2자에서 7자 사이로 입력해 주세요.");
-        NameBorderChangingRed();
+        errorName.innerText = "이름은 2자에서 7자 사이로 입력해 주세요.";
+        inputName.style.border = "1px solid red";
     } else {
-        hideErrorName();
-        nameBorderReset();
+        errorName.innerText = "";
+        inputName.style.border = "";
     }
 
     if (number === "") {
-        displayErrorMessageNumber("전화번호를 입력해 주세요.");
-        numberBorderChangingRed();
+        errorNumber.innerText = "전화번호를 입력해 주세요.";
+        inputNumber.style.border = "1px solid red";
     } else if (!checkValidNumber(number)) {
-        displayErrorMessageNumber("유효한 전화번호를 입력해 주세요.");
-        numberBorderChangingRed();
+        errorNumber.innerText = "유효한 전화번호를 입력해 주세요.";
+        inputNumber.style.border = "1px solid red";
     } else if (number.length > 11) {
         // 길이 제한 (최대 11)
-        displayErrorMessageNumber("전화번호는 최대 11자까지 입력 가능합니다.");
-        numberBorderChangingRed();
+        errorNumber.innerText = "전화번호는 최대 11자까지 입력 가능합니다.";
+        inputNumber.style.border = "1px solid red";
     } else {
-        hideErrorNumber();
-        numberBorderReset();
+        errorNumber.innerText = "";
+        inputNumber.style.border = "";
     }
 
 });
@@ -126,4 +90,8 @@ function submitChecking() {
         document.getElementById("find_id_form").submit()
     }
 
+}
+
+function btnClickEvent() {
+    alert("로그인 후 이용 가능한 서비스입니다.")
 }

@@ -17,12 +17,12 @@ request.setCharacterEncoding("UTF-8");
 Class.forName("com.mysql.jdbc.Driver");
 
 // db 연결
-Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/project", "haewon", "kjneeke0609@");
+Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/imitation", "haewon", "kjneeke0609@");
 
 String nameValue = request.getParameter("name_value");
 String phonenumberValue = request.getParameter("phonenumber_value");
 
-String query = "SELECT id FROM user WHERE name=? AND number=?";
+String query = "SELECT email FROM user WHERE name=? AND phone=?";
 PreparedStatement statement = connection.prepareStatement(query);
 
 statement.setString(1, nameValue);
@@ -33,24 +33,26 @@ ResultSet resultSet = statement.executeQuery();
 String idValue = null;
 
 if (resultSet.next()) {
-    idValue = resultSet.getString("id");
-} else {
-    idValue = "일치하는 ID를 찾을 수 없습니다.";
+    idValue = resultSet.getString("email");
 }
 
-resultSet.close();
-statement.close();
-connection.close();
+idValue = "\""+idValue+"\"";
 
 %>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+<script>
 
-    <h1>아이디 : <%=idValue%> </h1>
-    
-</body>
+    function locateLoginPage() {
+        window.location.href = "../index.html";
+    }
+
+    if(<%=idValue%> == ""){
+        alert("일치하는 아이디가 없습니다");
+        history.back(); 
+    }
+    else{
+        alert("아이디 : " + <%=idValue%>)
+        locateLoginPage()
+    }
+
+</script>

@@ -6,28 +6,21 @@
     <title>Document</title>
     <link rel="stylesheet" type="text/css" href="../css/base.css">
     <link rel="stylesheet" type="text/css" href="../css/formpage.css">
-    <link rel="stylesheet" type="text/css" href="../css/find.css">
     <link rel="stylesheet" type="text/css" href="../css/JoinMemberPage.css">
 </head>
 <body>
 
     <header>
-        <button>
-            <img class="stageus_logo" src="../icon/stageus_logo_white.png">
-        </button>
-    </header>
 
-    <nav role="navigation">
-        <div id="menuToggle">
-            <input type="checkbox" />
-            <span></span>
-            <span></span>
-            <span></span>
-            <ul id="menu">
-                
-            </ul>
+        <button onclick="btnClickEvent()">
+            <img class="menu_btn" src="../icon/free-icon-menu-2976215.png">
+        </button>
+
+        <div class="logo_container">
+            <img class="stageus_logo" src="../icon/stageus_logo_white.png">
         </div>
-    </nav>
+
+    </header>
 
     <h1 class="form_title">회원가입</h1>
 

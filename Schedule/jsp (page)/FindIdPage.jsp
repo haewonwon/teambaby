@@ -10,26 +10,20 @@
 <body>
 
     <header>
-        <button>
-            <img class="stageus_logo" src="../icon/stageus_logo_white.png">
-        </button>
-    </header>
 
-    <nav role="navigation">
-        <div id="menuToggle">
-            <input type="checkbox" />
-            <span></span>
-            <span></span>
-            <span></span>
-            <ul id="menu">
-                
-            </ul>
+        <button onclick="btnClickEvent()">
+            <img class="menu_btn" src="../icon/free-icon-menu-2976215.png">
+        </button>
+
+        <div class="logo_container">
+            <img class="stageus_logo" src="../icon/stageus_logo_white.png">
         </div>
-    </nav>
+
+    </header>
 
     <h1 class="form_title">ID 찾기</h1>
 
-    <form id="find_id_form">
+    <form id="find_id_form" action="../jsp (action)/FindIdAction.jsp">
 
         <table>
             <tr class="input_form_box">
@@ -38,7 +32,7 @@
                 </td>
 
                 <td>
-                    <input type="text" class="input_form" id="name_value">
+                    <input type="text" class="input_form" id="name_value" name="name_value">
                     <div class="error_message" id="error_name_find_id"></div>
                 </td>
             </tr>
@@ -48,7 +42,7 @@
                 </td>
 
                 <td>
-                    <input type="text" class="input_form" id="phonenumber_value">
+                    <input type="text" class="input_form" id="phonenumber_value" name="phonenumber_value">
                     <div class="error_message" id="error_number_find_id"></div>
                 </td>
             </tr>

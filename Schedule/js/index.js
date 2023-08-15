@@ -50,9 +50,9 @@ function removeMessage(message) {
 };
 
 // 함수 - 이메일 유효성
+var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 function checkingEmail(email) {
 
-    var emailPattern = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i; // 이메일 정규표현식 고치기 // 정규표현식 뜯어서 분석해보기
     return emailPattern.test(email);
 
 };
@@ -108,4 +108,8 @@ function submitChecking() {
         document.getElementById("index_form").submit()
     }
 
+}
+
+function btnClickEvent() {
+    alert("로그인 후 이용 가능한 서비스입니다.")
 }

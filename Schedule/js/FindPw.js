@@ -33,58 +33,6 @@ function checkValidEmail(email) {
     return emailPattern.test(email);
 };
 
-// 경고 문구 출력 (이름)
-function displayErrorMessageName(message) {
-    errorName.innerText = message;
-};
-// 경고 문구 출력 (전화번호)
-function displayErrorMessageNumber(message) {
-    errorNumber.innerText = message;
-};
-// 경고 문구 출력 (이메일)
-function displayErrorMessageEmail(message) {
-    errorEmail.innerText = message;
-};
-
-// 조건 충족 시, 경고 문구 삭제 (이름)
-function hideErrorName() {
-    errorName.innerText = "";
-};
-// 조건 충족 시, 경고 문구 삭제 (전화번호)
-function hideErrorNumber() {
-    errorNumber.innerText = "";
-};
-// 조건 충족 시, 경고 문구 삭제 (이메일)
-function hideErrorEmail() {
-    errorEmail.innerText = "";
-};
-
-// 테두리 빨간색 (이름)
-function NameBorderChangingRed() {
-    inputName.style.border = "1px solid red";
-};
-// 테두리 빨간색 (전화번호)
-function numberBorderChangingRed() {
-    inputNumber.style.border = "1px solid red";
-};
-// 테두리 빨간색 (이메일)
-function EmailBorderChangingRed() {
-    inputEmail.style.border = "1px solid red";
-};
-
-// 조건 충족 시, 테두리 원상복구 (이름)
-function nameBorderReset() {
-    inputName.style.border = "";
-};
-// 조건 충족 시, 테두리 원상복구 (전화번호)
-function numberBorderReset() {
-    inputNumber.style.border = "";
-};
-// 조건 충족 시, 테두리 원상복구 (이메일)
-function emailBorderReset() {
-    inputEmail.style.border = "";
-};
-
 // 이벤트 함수
 btnFindPw.addEventListener("click", function() {
 
@@ -95,48 +43,48 @@ btnFindPw.addEventListener("click", function() {
     var email = inputEmail.value.trim();
     
     if (name === "") {
-        displayErrorMessageName("이름을 입력해 주세요.");
-        NameBorderChangingRed();
+        errorName.innerText = "이름을 입력해 주세요."
+        inputName.style.border = "1px solid red";
     } else if (!checkKoreanEnglish(name)) {
-        displayErrorMessageName("이름은 한글과 영어만 입력 가능합니다.");
-        NameBorderChangingRed();
+        errorName.innerText = "이름은 한글과 영어만 입력 가능합니다.";
+        inputName.style.border = "1px solid red";
     } else if (name.length < 2 || name.length > 7) {
         // 길이 제한 (2~7)
-        displayErrorMessageName("이름은 2자에서 7자 사이로 입력해 주세요.");
-        NameBorderChangingRed();
+        errorName.innerText = "이름은 2자에서 7자 사이로 입력해 주세요.";
+        inputName.style.border = "1px solid red";
     } else {
-        hideErrorName();
-        nameBorderReset();
+        errorName.innerText = "";
+        inputName.style.border = "";
     }
 
     if (number === "") {
-        displayErrorMessageNumber("전화번호를 입력해 주세요.");
-        numberBorderChangingRed();
+        errorNumber.innerText = "전화번호를 입력해 주세요.";
+        inputNumber.style.border = "1px solid red";
     } else if (!checkValidNumber(number)) {
-        displayErrorMessageNumber("유효한 전화번호를 입력해 주세요.");
-        numberBorderChangingRed();
+        errorNumber.innerText = "유효한 전화번호를 입력해 주세요.";
+        inputNumber.style.border = "1px solid red";
     } else if (number.length > 11) {
         // 길이 제한 (최대 11)
-        displayErrorMessageNumber("전화번호는 최대 11자까지 입력 가능합니다.");
-        numberBorderChangingRed();
+        errorNumber.innerText = "전화번호는 최대 11자까지 입력 가능합니다.";
+        inputNumber.style.border = "1px solid red";
     } else {
-        hideErrorNumber();
-        numberBorderReset();
+        errorNumber.innerText = "";
+        inputNumber.style.border = "";
     }
 
     if (email === "") {
-        displayErrorMessageEmail("이메일을 입력해 주세요");
-        EmailBorderChangingRed();
+        errorEmail.innerText = "이메일을 입력해 주세요";
+        inputEmail.style.border = "1px solid red";
     } else if (!checkValidEmail(email)) {
-        displayErrorMessageEmail("올바른 이메일 양식을 입력해 주세요.");
-        EmailBorderChangingRed();
+        errorEmail.innerText = "올바른 이메일 양식을 입력해 주세요.";
+        inputEmail.style.border = "1px solid red";
     } else if (email.length > 320) {
         // 길이 제한 (최대 320)
-        displayErrorMessageEmail("이메일은 최대 320자까지 입력 가능합니다.");
-        EmailBorderChangingRed();
+        errorEmail.innerText = "이메일은 최대 320자까지 입력 가능합니다.";
+        inputEmail.style.border = "1px solid red";
     } else {
-        hideErrorEmail();
-        emailBorderReset();
+        errorEmail.innerText = "";
+        inputEmail.style.border = "";
     }
 
 });
@@ -163,7 +111,11 @@ function submitChecking() {
     } else if (email === "" || !checkValidEmail(email) || email.length > 320) {
         alert("올바른 이메일을 입력해 주세요.")
     } else {
-        document.getElementById("find_id_form").submit()
+        document.getElementById("find_pw_form").submit()
     }
 
+}
+
+function btnClickEvent() {
+    alert("로그인 후 이용 가능한 서비스입니다.")
 }

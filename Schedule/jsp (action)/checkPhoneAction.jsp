@@ -15,30 +15,24 @@
 request.setCharacterEncoding("UTF-8");
 String numberValue = request.getParameter("phonenumber_value");
 
+// Connector 파일 불러와서 MariaDB 연결
+Class.forName("com.mysql.jdbc.Driver");
+
+// db 연결
+Connection connect = DriverManager.getConnection("jdbc:mysql://localhost/imitation", "haewon", "kjneeke0609@");
+
+// sql 만들기
+String sql = "SELECT * FROM user WHERE phone=?";
+PreparedStatement query = connect.prepareStatement(sql);
+query.setString(1, numberValue);
+
 boolean phoneCheck;
 
-try {
-    // Connector 파일 불러와서 MariaDB 연결
-    Class.forName("com.mysql.jdbc.Driver");
+ResultSet resultSet = query.executeQuery();
 
-    // db 연결
-    Connection connect = DriverManager.getConnection("jdbc:mysql://localhost/imitation", "haewon", "kjneeke0609@");
-
-    // sql 만들기
-    String sql = "SELECT * FROM user WHERE phone=?";
-    PreparedStatement query = connect.prepareStatement(sql);
-    query.setString(1, numberValue);
-
-    ResultSet resultSet = query.executeQuery();
-
-    phoneCheck = resultSet.next();
-
-    resultSet.close();
-    query.close();
-    connect.close();
-
-} catch (Exception e) {
-    e.printStackTrace();
+if(resultSet.next()) {
+    phoneCheck = true;
+} else {
     phoneCheck = false;
 }
 
@@ -53,7 +47,7 @@ try {
     else {
         alert("사용 가능한 전화번호입니다.")
         var number =  opener.document.getElementById("phonenumber_value");
-        number.readonly = true;
+        number.readOnly = true;
         number.style.border = "1px solid blue";
     }
     self.close();

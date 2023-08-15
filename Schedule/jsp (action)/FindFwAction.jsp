@@ -17,14 +17,14 @@ request.setCharacterEncoding("UTF-8");
 Class.forName("com.mysql.jdbc.Driver");
 
 // db 연결
-Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/project", "haewon", "kjneeke0609@");
+Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/imitation", "haewon", "kjneeke0609@");
 
 String nameValue = request.getParameter("name_value");
 String emailValue = request.getParameter("email_value");
-String numberValue = request.getParameter("phonenumber_value");
+String phonenumberValue = request.getParameter("phonenumber_value");
 
 //SQL 만들기
-String query = "SELECT pw FROM user WHERE name=? AND email=? AND number=?";
+String query = "SELECT id FROM user WHERE name=? AND email=? AND phone=?";
 PreparedStatement statement = connection.prepareStatement(query);
 
 statement.setString(1, nameValue);
@@ -36,7 +36,11 @@ ResultSet resultSet = statement.executeQuery();
 boolean success = false;
 
 if(resultSet.next()) {
+    String id = resultSet.getString("id");
+    session.setAttribute("change_pw_user_id", id);
     success = true;
+} else {
+    success = false;
 }
 
 resultSet.close();
@@ -44,4 +48,18 @@ statement.close();
 connection.close();
 
 %>
-<jsp:forward page="jsp (action)/ChangePwAction.jsp"/>
+
+<script>
+
+    function locateChangePwPage() {
+        window.location.href = "../jsp (page)/ChangePwPage.jsp";
+    };
+
+    if (<%=success%> == true) {
+        locateChangePwPage();
+    } else {
+        alert("일치하는 정보가 없습니다.");
+        history.back();
+    }
+
+</script>

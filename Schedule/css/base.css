@@ -81,26 +81,37 @@ h1 {
     font-size: 16;
     font-weight: 400;
 }
-
-
-
+/* header 안 로고, 메뉴 버튼 영역 */
 header {
     position: absolute;
     top: 0;
     left: 0;
     display: flex;
-    justify-content: center;
+    align-items: center;
+    justify-content: space-between;
     width: var(--header-width);
     height: var(--header-height);
     background-color: var(--blue-color-main);
+}
+
+.logo_container {
+    text-align: center;
+    flex-grow: 1;
 }
 
 .stageus_logo {
     width: var(--logo-width);
     height: var(--logo-height);
     padding-top: var(--logo-padding-top);
+    display: inline-block;
+    vertical-align: middle;
 }
 
+.menu_btn {
+    margin-right: auto;
+    padding-left: 10px;
+}
+/* 전체 버튼 관련 */
 button {
     background-color: transparent;
     border: none;
@@ -116,110 +127,4 @@ button {
     margin-top: var(--form-title-margin-top);
     font-size: var(--form-title-font-size);
     font-weight: 400;
-}
-
-/* 햄버거 메뉴 버튼 */
-#menuToggle {
-    display: block;
-    position: absolute;
-    top: 48px;
-    left: 40px;
-    
-    z-index: 1;
-    
-    -webkit-user-select: none;
-    user-select: none;
-}
-
-#menuToggle a {
-    text-decoration: none;
-    color: #232323;
-    
-    transition: color 0.3s ease;
-}
-
-#menuToggle a:hover {
-    color: #3B5998;
-}
-
-#menuToggle input {
-    display: block;
-    width: 110px;
-    height: 10px;
-    position: absolute;
-    top: -7px;
-    left: -5px;
-    
-    cursor: pointer;
-    opacity: 0;
-    z-index: 2;
-    
-    -webkit-touch-callout: none;
-}
-
-#menuToggle span {
-    display: block;
-    width: 100px;
-    height: 8px;
-    margin-bottom: 10px;
-    position: relative;
-    
-    background: #fff;
-    border-radius: 3px;
-    z-index: 1;
-    
-    transform-origin: 4px 0px;
-    
-    transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
-                background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
-                opacity 0.55s ease;
-}
-
-#menuToggle span:first-child {
-    transform-origin: 0% 0%;
-}
-
-#menuToggle span:nth-last-child(2) {
-    transform-origin: 0% 100%;
-}
-
-#menuToggle input:checked ~ span {
-    opacity: 1;
-    transform: rotate(45deg) translate(-2px, -1px);
-    background: #cdcdcd;
-}
-
-#menuToggle input:checked ~ span:nth-last-child(3) {
-    opacity: 0;
-    transform: rotate(0deg) scale(0.2, 0.2);
-}
-
-#menuToggle input:checked ~ span:nth-last-child(2) {
-    transform: rotate(-45deg) translate(0, -1px);
-}
-
-#menu {
-    position: absolute;
-    width: 300px;
-    height: 635px;
-    margin: -100px 0 0 -50px;
-    padding: 50px;
-    margin-top: 55px;
-    
-    background: #ededed;
-    list-style-type: none;
-    -webkit-font-smoothing: antialiased;
-    transform-origin: 0% 0%;
-    transform: translate(-100%, 0);
-    
-    transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
-}
-
-#menu li {
-    padding: 10px 0;
-    font-size: 22px;
-}
-
-#menuToggle input:checked ~ ul {
-    transform: none;
 }

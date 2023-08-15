@@ -15,30 +15,24 @@
 request.setCharacterEncoding("UTF-8");
 String emailValue = request.getParameter("email_value");
 
+// Connector 파일 불러와서 MariaDB 연결
+Class.forName("com.mysql.jdbc.Driver");
+
+// db 연결
+Connection connect = DriverManager.getConnection("jdbc:mysql://localhost/imitation", "haewon", "kjneeke0609@");
+
+// sql 만들기
+String sql = "SELECT * FROM user WHERE email=?";
+PreparedStatement query = connect.prepareStatement(sql);
+query.setString(1, emailValue);
+
 boolean emailCheck;
 
-try {
-    // Connector 파일 불러와서 MariaDB 연결
-    Class.forName("com.mysql.jdbc.Driver");
+ResultSet resultSet = query.executeQuery();
 
-    // db 연결
-    Connection connect = DriverManager.getConnection("jdbc:mysql://localhost/imitation", "haewon", "kjneeke0609@");
-
-    // sql 만들기
-    String sql = "SELECT * FROM user WHERE email=?";
-    PreparedStatement query = connect.prepareStatement(sql);
-    query.setString(1, emailValue);
-
-    ResultSet resultSet = query.executeQuery();
-
-    emailCheck = resultSet.next();
-
-    resultSet.close();
-    query.close();
-    connect.close();
-
-} catch (Exception e) {
-    e.printStackTrace();
+if(resultSet.next()) {
+    emailCheck = true;
+} else {
     emailCheck = false;
 }
 
@@ -53,7 +47,7 @@ try {
     else {
         alert("사용 가능한 이메일입니다.")
         var email =  opener.document.getElementById("email_value");
-        email.readonly = true;
+        email.readOnly = true;
         email.style.border = "1px solid blue";
     }
     self.close();

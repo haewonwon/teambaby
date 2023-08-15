@@ -10,27 +10,16 @@
 <body>
 
     <header>
-        <button>
-            <img class="stageus_logo" src="icon/stageus_logo_white.png">
-        </button>
-    </header>
 
-    <nav role="navigation">
-        <div id="menuToggle">
-            <input type="checkbox" />
-            <span></span>
-            <span></span>
-            <span></span>
-            <ul id="menu">
-                <!-- createElement 반복문 (5개)-->
-               <div>김해원</div>
-               <div>팀원</div>
-               <div>2002.02.21</div>
-               <div>jephpp@naver.com</div>
-               <div>01030641864</div>
-            </ul>
+        <button onclick="btnClickEvent()">
+            <img class="menu_btn" src="icon/free-icon-menu-2976215.png">
+        </button>
+
+        <div class="logo_container">
+            <img class="stageus_logo" src="icon/stageus_logo_white.png">
         </div>
-    </nav>
+
+    </header>
 
     <form action="jsp (action)/LoginAction.jsp" id="index_form">
 
@@ -38,12 +27,12 @@
 
         <div class="login_box">
             <img class="login_icon" src="icon/free-icon-login-310869.png">
-            <input class="input_login" id="id_value" type="text" placeholder="이메일을 입력하세요." maxlength="320">
+            <input class="input_login" id="id_value" name="id_value" type="text" placeholder="이메일을 입력하세요." maxlength="320">
         </div>
 
         <div class="login_box">
             <img class="login_icon" src="icon/free-icon-password-7817000.png">
-            <input class="input_login" id="pw_value" type="password" placeholder="비밀번호를 입력하세요." minlength="6" maxlength="20">
+            <input class="input_login" id="pw_value" name="pw_value" type="password" placeholder="비밀번호를 입력하세요." minlength="6" maxlength="20">
         </div>
 
         <div id="error_message_box"></div>
@@ -55,7 +44,6 @@
 
     </form>
 
-    <jsp:include page="../jsp (action)/navAction.jsp" />
     <script type="text/javascript" src="js/index.js"></script>
 </body>
 </html>

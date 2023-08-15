@@ -47,15 +47,15 @@ String sql = "INSERT INTO user (name, email, pw, rank, birthday, phone) VALUES (
 <script>
 
     function locateLoginPage() {
-        window.location.href = "../index.html";
         alert("회원 가입을 축하합니다.")
+        window.location.href = "../index.html";
     }
 
     if (<%=success%> == true) {
         locateLoginPage();
     } else {
-        window.location.href = "../jsp (page)/JoinMemberPage.jsp";
         alert("회원 가입에 실패했습니다.")
+        window.location.href = "../jsp (page)/JoinMemberPage.jsp";
     }
 
 // // 이름 검증

@@ -14,9 +14,11 @@
 // 앞 페이지에서 오는 데이터에 대해서 한글 인코딩
 request.setCharacterEncoding("UTF-8");
 
+String userID = (String)session.getAttribute("id");
 String scheduleValue = request.getParameter("input_schedule");
 String dateValue = request.getParameter("input_date");
 String timeValue = request.getParameter("input_time");
+boolean success = false;
 
 // Connector 파일 불러와서 MariaDB 연결
 Class.forName("com.mysql.jdbc.Driver");
@@ -25,36 +27,32 @@ Class.forName("com.mysql.jdbc.Driver");
 Connection connect = DriverManager.getConnection("jdbc:mysql://localhost/imitation", "haewon", "kjneeke0609@");
 
 PreparedStatement query = null;
-boolean success = false;
 
-try {
-
-    String sql = "INSERT INTO schedule (id, content, start_time) VALUES (?, ?, ?)";
+String sql = "INSERT INTO schedule (user_id, content, schedule_date, start_time) VALUES (?, ?, ?, ?)";
     query = connect.prepareStatement(sql);
 
-    query.setString(1, scheduleValue);
-    query.setString(2, dateValue);
-    query.setString(3, timeValue);
+    query.setString(1, userID);
+    query.setString(2, scheduleValue);
+    query.setString(3, dateValue);
+    query.setString(4, timeValue);
 
     query.executeUpdate();
     success = true;
 
-} catch (Exception e) {
-    System.out.println("An exception occurred: " + e.getMessage());
-    e.printStackTrace();
-} finally {
-    if (query != null) {
-        query.close();
-    }
-    if (connect != null) {
-        connect.close();
-    }
-}
 
 %>
 
 <script>
-
     
+    function locateMainPage() {
+        window.location.href = "../jsp (page)/main.jsp";
+    };
+
+    if (<%=success%> == true) {
+        locateMainPage();
+    } else {
+        alert("일정 추가 실패");
+        history.back();
+    }
 
 </script>

@@ -10,7 +10,6 @@
 <%@ page import="java.sql.ResultSet" %>
 
 <%
-
 // 앞 페이지에서 오는 데이터에 대해서 한글 인코딩
 request.setCharacterEncoding("UTF-8");
 
@@ -18,19 +17,20 @@ request.setCharacterEncoding("UTF-8");
 Class.forName("com.mysql.jdbc.Driver");
 
 // db 연결
-Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/project", "haewon", "kjneeke0609@");
+Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/imitation", "haewon", "kjneeke0609@");
 
 String pwValue = request.getParameter("pw_value");
-String emailValue = request.getParameter("email_value");
+String id = (String)session.getAttribute("change_pw_user_id");
 
 //SQL 만들기
-String query = "UPDATE user SET SET pw = ? WHERE email = ?";
+String query = "UPDATE user SET pw = ? WHERE id = ?";
 PreparedStatement statement = connection.prepareStatement(query);
-    
-statement.setString(1, pwValue);
-statement.setString(2, emailValue);
 
-query.executeUpdate();
+statement.setString(1, pwValue);
+statement.setString(2, id);
+
+statement.executeUpdate();
+
 %>
 
 <script>

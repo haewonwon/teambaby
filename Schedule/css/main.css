@@ -54,3 +54,13 @@ main {
     border-radius: 10px;
     font-size: 40px;
 }
+
+#side_menu {
+    position: absolute;
+    top: 280px;
+    left: -250px; /* 초기에는 메뉴가 화면 밖에 있도록 설정 */
+    width: 250px;
+    height: 100%;
+    background-color: var(--white-color-two);
+    transition: left 0.3s ease-in-out; /* 움직임 효과 추가 */
+}

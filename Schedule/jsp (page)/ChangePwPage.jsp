@@ -10,26 +10,20 @@
 <body>
 
     <header>
-        <button>
-            <img class="stageus_logo" src="../icon/stageus_logo_white.png">
+
+        <button onclick="btnClickEvent()">
+            <img class="menu_btn" src="../icon/free-icon-menu-2976215.png">
         </button>
-    </header>
 
-    <nav role="navigation">
-        <div id="menuToggle">
-            <input type="checkbox" />
-            <span></span>
-            <span></span>
-            <span></span>
-            <ul id="menu">
-
-            </ul>
+        <div class="logo_container">
+            <img class="stageus_logo" src="../icon/stageus_logo_white.png">
         </div>
-    </nav>
+
+    </header>
 
     <h1 class="form_title">PW 변경하기</h1>
 
-    <form>
+    <form id="change_pw_form" action="../jsp (action)/ChangePwAction.jsp">
 
         <table>
             <tr class="input_form_box">
@@ -38,7 +32,7 @@
                 </td>
 
                 <td>
-                    <input type="password" class="input_form" id="pw_value">
+                    <input type="password" class="input_form" id="pw_value" name="pw_value">
                     <div class="error_message" id="error_pw_change_pw"></div>
                 </td>
             </tr>
@@ -56,7 +50,7 @@
 
         <div class="btn_form_box">
             <input type="button" class="btn_form" id="btn_cancel" value="취소">
-            <input type="submit" class="btn_form" id="btn_change_pw" value="변경하기">
+            <input type="button" class="btn_form" id="btn_change_pw" value="변경하기" onclick="submitChecking()">
         </div>
 
     </form>
